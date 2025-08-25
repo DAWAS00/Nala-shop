@@ -72,10 +72,21 @@
     </div>
 
     <!-- Hero Section -->
-    <section id="home" class="py-20 relative overflow-hidden">
+ 
+
+    <section id="home" class="py-32 relative overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="images/BG.jpg" alt="Ocean Background" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            <!-- Slideshow Background -->
+            <div id="hero-slideshow" class="w-full h-full relative">
+                <img src="images/18.jpeg" alt="Nala Shop Collection" class="slideshow-image active absolute inset-0 w-full h-full object-cover transition-opacity duration-1000">
+                <img src="images/19.jpeg" alt="Nala Shop Collection" class="slideshow-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+                <img src="images/20.jpeg" alt="Nala Shop Collection" class="slideshow-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+                <img src="images/21.jpeg" alt="Nala Shop Collection" class="slideshow-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+                <img src="images/22.jpeg" alt="Nala Shop Collection" class="slideshow-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+                <img src="images/23.jpeg" alt="Nala Shop Collection" class="slideshow-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+                <img src="images/10.jpg" alt="Nala Shop Collection" class="slideshow-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+            </div>
+            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
         </div>
         <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
             <div class="floating">
@@ -111,232 +122,6 @@
         </div>
     </section>
 
-    <!-- Image Gallery Section -->
-    <section class="py-20">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-4xl font-playfair font-bold text-center text-gradient mb-16">Gallery of Ocean Treasures</h2>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div class="product-card pearl-shadow rounded-2xl overflow-hidden shell-border">
-                    <img src="images/11.jpg" alt="Nala Shop Collection" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-300">
-                </div>
-                <div class="product-card pearl-shadow rounded-2xl overflow-hidden shell-border">
-                    <img src="images/12.jpg" alt="Nala Shop Collection" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-300">
-                </div>
-                <div class="product-card pearl-shadow rounded-2xl overflow-hidden shell-border">
-                    <img src="images/13.jpeg" alt="Nala Shop Collection" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-300">
-                </div>
-                <div class="product-card pearl-shadow rounded-2xl overflow-hidden shell-border">
-                    <img src="images/14.jpeg" alt="Nala Shop Collection" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-300">
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                <div class="product-card pearl-shadow rounded-2xl overflow-hidden shell-border">
-                    <img src="images/15.jpeg" alt="Nala Shop Collection" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-300">
-                </div>
-                <div class="product-card pearl-shadow rounded-2xl overflow-hidden shell-border">
-                    <img src="images/16.jpeg" alt="Nala Shop Collection" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-300">
-                </div>
-                <div class="product-card pearl-shadow rounded-2xl overflow-hidden shell-border">
-                    <img src="images/1.jpeg" alt="Nala Shop Collection" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-300">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Video Section -->
-    <section class="py-20 shell-pattern">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-4xl font-playfair font-bold text-center text-gradient mb-16">See Our Process</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Watch how we handcraft each unique piece with love and attention to detail</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                <!-- Instagram-Style Post Card -->
-                <div class="group relative bg-white/80 backdrop-blur-sm rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20">
-                    <!-- Gradient Overlay -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-pink-50/50 via-purple-50/30 to-blue-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    <!-- Instagram Header -->
-                    <div class="flex items-center p-4 border-b border-gray-100">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center mr-3">
-                            <span class="text-white font-bold text-sm">N</span>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="font-semibold text-gray-900 text-sm">nala_shopp</h4>
-                            <p class="text-gray-500 text-xs">Handcrafted Phone Cases</p>
-                        </div>
-                        <button class="text-blue-500 text-sm font-medium hover:text-blue-600 transition-colors">
-                            Follow
-                        </button>
-                    </div>
-                    
-                    <!-- Video Content -->
-                    <div class="relative aspect-video bg-gradient-to-br from-pink-100 to-purple-100">
-                        <video class="w-full h-full object-cover" controls poster="images/1.jpeg" preload="metadata" playsinline>
-                            <source src="images/7.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    
-                    <!-- Instagram Actions -->
-                    <div class="p-4">
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center space-x-4">
-                                <button class="flex items-center space-x-1 text-gray-700 hover:text-red-500 transition-colors">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                    </svg>
-                                </button>
-                                <button class="flex items-center space-x-1 text-gray-700 hover:text-blue-500 transition-colors">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                                    </svg>
-                                </button>
-                                <button class="flex items-center space-x-1 text-gray-700 hover:text-blue-500 transition-colors">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <button class="text-gray-700 hover:text-gray-900 transition-colors">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
-                                </svg>
-                            </button>
-                        </div>
-                        
-                        <!-- Engagement Stats -->
-                        <div class="mb-3">
-                            <p class="font-semibold text-gray-900 text-sm mb-1">33 likes</p>
-                            <p class="text-gray-600 text-sm">
-                                <span class="font-semibold text-gray-900">nala_shopp</span> 
-                                Handcrafting magic ✨ Watch our artisans carefully place each seashell and pearl to create your unique phone case. Every piece tells a story of the ocean 🌊
-                            </p>
-                            <button class="text-gray-500 text-sm mt-1 hover:text-gray-700 transition-colors">
-                                View all 127 comments
-                            </button>
-                        </div>
-                        
-                        <!-- Visit Instagram Button -->
-                        <a href="https://www.instagram.com/p/DHTvRiBsbs9/" target="_blank" 
-                           class="block w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white text-center py-3 rounded-lg font-medium hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
-                            View on Instagram
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="group relative bg-white/80 backdrop-blur-sm rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20">
-                    <!-- Gradient Overlay -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-teal-50/30 to-green-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    <!-- Instagram Header -->
-                    <div class="flex items-center justify-between p-4 border-b border-gray-100 relative z-10">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
-                                <span class="text-white font-bold text-sm">N</span>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-gray-900 text-sm">nala_shopp</p>
-                                <p class="text-gray-500 text-xs">Ocean-Inspired Cases</p>
-                            </div>
-                        </div>
-                        <button class="bg-blue-500 text-white px-4 py-1 rounded-md text-sm font-medium hover:bg-blue-600 transition-colors">
-                            Follow
-                        </button>
-                    </div>
-                    
-                    <!-- Video Content -->
-                     <div class="relative aspect-video bg-gradient-to-br from-blue-100 to-teal-100">
-                         <video class="w-full h-full object-cover" controls poster="images/17.jpeg" preload="metadata" playsinline>
-                             <source src="images/8.mp4" type="video/mp4">
-                             Your browser does not support the video tag.
-                         </video>
-                     </div>
-                    
-                    <div class="p-4">
-                        <!-- Action Buttons -->
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center space-x-4">
-                                <button class="hover:text-red-500 transition-colors">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                    </svg>
-                                </button>
-                                <button class="hover:text-blue-500 transition-colors">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                                    </svg>
-                                </button>
-                                <button class="hover:text-blue-500 transition-colors">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <button class="hover:text-gray-700 transition-colors">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
-                                </svg>
-                            </button>
-                        </div>
-                        
-                        <!-- Engagement Stats -->
-                        <div class="mb-3">
-                            <p class="font-semibold text-gray-900 text-sm mb-1">1,924 likes</p>
-                            <p class="text-gray-600 text-sm">
-                                <span class="font-semibold text-gray-900">nala_shopp</span> 
-                                Creating ocean dreams one case at a time 🐚✨ Each piece is carefully crafted with love and attention to detail. Swipe to see the magic happen! 🌊💙
-                            </p>
-                            <button class="text-gray-500 text-sm mt-1 hover:text-gray-700 transition-colors">
-                                View all 89 comments
-                            </button>
-                        </div>
-                        
-                        <!-- Visit Instagram Button -->
-                        <a href="https://www.instagram.com/p/DJ1vct0s22D/" target="_blank" 
-                           class="block w-full bg-gradient-to-r from-blue-500 to-teal-600 text-white text-center py-3 rounded-lg font-medium hover:from-blue-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105">
-                            View on Instagram
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Process Steps -->
-            <div class="mt-16">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div class="text-center">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-pink-100 flex items-center justify-center">
-                            <span class="text-2xl">🎯</span>
-                        </div>
-                        <h4 class="font-semibold mb-2 text-gray-800">1. Design</h4>
-                        <p class="text-sm text-gray-600">Sketch and plan unique ocean-inspired designs</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-100 flex items-center justify-center">
-                            <span class="text-2xl">🐚</span>
-                        </div>
-                        <h4 class="font-semibold mb-2 text-gray-800">2. Craft</h4>
-                        <p class="text-sm text-gray-600">Handplace each shell, pearl, and treasure</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
-                            <span class="text-2xl">🔍</span>
-                        </div>
-                        <h4 class="font-semibold mb-2 text-gray-800">3. Inspect</h4>
-                        <p class="text-sm text-gray-600">Quality check every detail for perfection</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-100 flex items-center justify-center">
-                            <span class="text-2xl">🎁</span>
-                        </div>
-                        <h4 class="font-semibold mb-2 text-gray-800">4. Package</h4>
-                        <p class="text-sm text-gray-600">Beautiful gift presentation ready to ship</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Featured Collections -->
     <section id="collections" class="py-20">
@@ -1302,5 +1087,10 @@
     </footer>
 
     <script src="js/script.js"></script>
+    
+  
+    <script>
+      
+    </script>
 </body>
 </html>

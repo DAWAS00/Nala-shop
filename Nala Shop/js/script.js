@@ -1,3 +1,27 @@
+  document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.slideshow-image');
+            let currentIndex = 0;
+            
+            function showNextImage() {
+                // Hide current image
+                images[currentIndex].classList.remove('active');
+                images[currentIndex].style.opacity = '0';
+                
+                // Move to next image
+                currentIndex = (currentIndex + 1) % images.length;
+                
+                // Show next image
+                images[currentIndex].classList.add('active');
+                images[currentIndex].style.opacity = '1';
+            }
+            
+            // Start slideshow - change image every 5 seconds
+            setInterval(showNextImage, 5000);
+        });
+
+
+
+
 // Product data
         const products = [
             {
