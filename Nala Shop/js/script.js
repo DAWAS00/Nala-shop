@@ -1,3 +1,5 @@
+// <!-- Hero Slideshow Script -->
+  
   document.addEventListener('DOMContentLoaded', function() {
             const images = document.querySelectorAll('.slideshow-image');
             let currentIndex = 0;
@@ -29,7 +31,7 @@
                 name: "Essential Collection",
                 description: "Summer-inspired phone cases, crafted for every moment with elegant designs",
                 price: 9,
-                image: '<img src="images/3.jpeg" alt="Essential Collection" class="w-full h-full object-cover rounded-lg">',
+                images: ["images/3.jpeg", "images/15.jpeg", "images/16.jpeg"],
                 category: "Cases",
                 featured: true,
                 rating: 4.8,
@@ -39,199 +41,57 @@
                     { name: "Lina M.", rating: 5, comment: "Perfect for summer vibes" }
                 ]
             },
+          
+         
             {
                 id: 2,
-                name: "Mother of Pearl",
-                description: "Beautiful pearl-inspired phone cases with shimmering details",
-                price: 8,
-                image: '<img src="images/1.jpeg" alt="Mother of Pearl" class="w-full h-full object-cover rounded-lg">',
-                category: "Cases",
-                featured: true,
-                rating: 4.9,
-                reviewCount: 89,
-                reviews: [
-                    { name: "Sara A.", rating: 5, comment: "The pearl details are stunning!" },
-                    { name: "Maya H.", rating: 5, comment: "Elegant and sophisticated" }
-                ]
-            },
-            {
-                id: 3,
-                name: "Fish Food Collection",
-                description: "Unique ocean-themed cases with vibrant colors and patterns",
-                price: 8,
-                image: '<img src="images/2.jpeg" alt="Fish Food Collection" class="w-full h-full object-cover rounded-lg">',
-                category: "Cases",
-                featured: true,
-                rating: 4.7,
-                reviewCount: 156,
-                reviews: [
-                    { name: "Nour S.", rating: 5, comment: "Love the vibrant colors!" },
-                    { name: "Rana T.", rating: 4, comment: "Unique design, great quality" }
-                ]
-            },
-            {
-                id: 4,
-                name: "Nala's Holder Essential",
-                description: "Essential phone holder collection in natural tones",
-                price: 3,
-                image: '<img src="images/4.jpg" alt="Nala\'s Holder Essential" class="w-full h-full object-cover rounded-lg">',
-                category: "Holders",
-                featured: false,
-                rating: 4.6,
-                reviewCount: 73,
-                reviews: [
-                    { name: "Dina F.", rating: 5, comment: "Great value for money!" }
-                ]
-            },
-            {
-                id: 5,
-                name: "Leopard Edition Holder",
-                description: "Stylish phone holder with leopard pattern and tassel detail",
-                price: 5,
-                image: '<img src="images/13.jpeg" alt="Leopard Edition Holder" class="w-full h-full object-cover rounded-lg">',
-                category: "Holders",
-                featured: true,
-                rating: 4.8,
-                reviewCount: 94,
-                reviews: [
-                    { name: "Layla R.", rating: 5, comment: "Love the leopard pattern!" }
-                ]
-            },
-            {
-                id: 6,
-                name: "Soft Whispers Collection",
-                description: "Matcha Mood, Ocean Soul, Feminine Touch - three beautiful options",
-                price: 5,
-                image: '<img src="images/14.jpeg" alt="Soft Whispers Collection" class="w-full h-full object-cover rounded-lg">',
-                category: "Cases",
-                featured: true,
-                rating: 4.9,
-                reviewCount: 112,
-                reviews: [
-                    { name: "Reem K.", rating: 5, comment: "Perfect feminine touch!" }
-                ]
-            },
-            {
-                id: 7,
-                name: "Ocean Blue Collection",
-                description: "Stunning blue-themed cases inspired by the deep ocean",
-                price: 10,
-                image: '<img src="images/15.jpeg" alt="Ocean Blue Collection" class="w-full h-full object-cover rounded-lg">',
-                category: "Cases",
-                featured: false,
-                rating: 4.7,
-                reviewCount: 68
-            },
-            {
-                id: 8,
                 name: "Coral Paradise",
                 description: "Vibrant coral and pink tones with shell accents",
                 price: 11,
-                image: '<img src="images/16.jpeg" alt="Coral Paradise" class="w-full h-full object-cover rounded-lg">',
+                images: ["images/27.jpeg", "images/29.jpeg", "images/30.jpeg"],
                 category: "Cases",
                 featured: false,
                 rating: 4.8,
                 reviewCount: 85
             },
             {
-                id: 9,
+                id: 3,
                 name: "Seashell Dreams",
                 description: "Elegant white and cream cases with real seashell details",
                 price: 12,
-                image: '<img src="images/5.jpg" alt="Seashell Dreams" class="w-full h-full object-cover rounded-lg">',
+                images: ["images/5.jpg", "images/6.jpg", "images/8.jpg"],
                 category: "Cases",
                 featured: false,
                 rating: 4.9,
                 reviewCount: 92
             },
+           
+            
+        
+           
             {
-                id: 10,
-                name: "Premium Layout Collection",
-                description: "Exclusive premium cases with unique layouts and designs",
-                price: 15,
-                image: '<img src="images/layout1.jpeg" alt="Premium Layout Collection" class="w-full h-full object-cover rounded-lg">',
-                category: "Cases",
-                featured: true,
-                rating: 4.9,
-                reviewCount: 134
-            },
-            {
-                id: 11,
-                name: "Designer Series",
-                description: "High-end designer cases with sophisticated patterns",
-                price: 18,
-                image: '<img src="images/layout2.jpeg" alt="Designer Series" class="w-full h-full object-cover rounded-lg">',
-                category: "Cases",
-                featured: true,
-                rating: 4.8,
-                reviewCount: 76
-            },
-            {
-                id: 12,
-                name: "Classic Collection",
-                description: "Timeless designs that never go out of style",
-                price: 7,
-                image: '<img src="images/6.jpg" alt="Classic Collection" class="w-full h-full object-cover rounded-lg">',
-                category: "Cases",
-                featured: false,
-                rating: 4.6,
-                reviewCount: 103
-            },
-            {
-                id: 13,
-                name: "Premium Gift Set",
-                description: "Complete gift box with case, holder, and accessories",
-                price: 25,
-                image: '<img src="images/8.jpg" alt="Premium Gift Set" class="w-full h-full object-cover rounded-lg">',
-                category: "Sets",
-                featured: true,
-                rating: 4.9,
-                reviewCount: 58
-            },
-            {
-                id: 14,
-                name: "Ocean Collection",
-                description: "Beautiful ocean-themed cases with blue and white designs",
-                price: 13,
-                image: '<img src="images/9.jpg" alt="Ocean Collection" class="w-full h-full object-cover rounded-lg">',
-                category: "Cases",
-                featured: false,
-                rating: 4.7,
-                reviewCount: 81
-            },
-            {
-                id: 15,
+                id: 4,
                 name: "Coral Collection",
                 description: "Vibrant coral and pink cases with tropical vibes",
                 price: 14,
-                image: '<img src="images/10.jpg" alt="Coral Collection" class="w-full h-full object-cover rounded-lg">',
+                images: ["images/10.jpg", "images/16.jpeg", "images/31.jpeg"],
                 category: "Cases",
                 featured: false,
                 rating: 4.8,
                 reviewCount: 67
             },
             {
-                id: 16,
+                id: 5,
                 name: "Pearl Collection",
                 description: "Elegant pearl-inspired cases with shimmering details",
                 price: 16,
-                image: '<img src="images/11.jpg" alt="Pearl Collection" class="w-full h-full object-cover rounded-lg">',
+                images: ["images/32.jpeg", "images/33.jpeg", "images/34.jpeg"],
                 category: "Cases",
                 featured: true,
                 rating: 4.9,
                 reviewCount: 145
             },
-            {
-                id: 17,
-                name: "Luxury Collection",
-                description: "Premium luxury cases with sophisticated designs",
-                price: 20,
-                image: '<img src="images/12.jpg" alt="Luxury Collection" class="w-full h-full object-cover rounded-lg">',
-                category: "Cases",
-                featured: true,
-                rating: 4.8,
-                reviewCount: 89
-            }
+         
             
             
 
@@ -384,9 +244,34 @@
                             </div>
                             
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <!-- Product Image -->
-                                <div class="h-80 ocean-gradient flex items-center justify-center rounded-2xl overflow-hidden">
-                                    ${product.image}
+                                <!-- Product Image Slider -->
+                                <div class="relative h-80 rounded-2xl overflow-hidden">
+                                    <div class="product-slider h-full">
+                                        ${product.images ? product.images.map((img, index) => `
+                                            <div class="slider-item ${index === 0 ? 'active' : ''} absolute inset-0 transition-opacity duration-300 ${index === 0 ? 'opacity-100' : 'opacity-0'}">
+                                                <img src="${img}" alt="${product.name}" class="w-full h-full object-cover">
+                                            </div>
+                                        `).join('') : `
+                                            <div class="slider-item active absolute inset-0">
+                                                <img src="${product.image || 'images/placeholder.jpg'}" alt="${product.name}" class="w-full h-full object-cover">
+                                            </div>
+                                        `}
+                                    </div>
+                                    ${product.images && product.images.length > 1 ? `
+                                        <!-- Navigation Arrows -->
+                                        <button class="slider-prev absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg transition-all duration-200">
+                                            <i class="fas fa-chevron-left text-gray-600"></i>
+                                        </button>
+                                        <button class="slider-next absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg transition-all duration-200">
+                                            <i class="fas fa-chevron-right text-gray-600"></i>
+                                        </button>
+                                        <!-- Indicators -->
+                                        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                            ${product.images.map((_, index) => `
+                                                <button class="slider-indicator w-2 h-2 rounded-full transition-all duration-200 ${index === 0 ? 'bg-white' : 'bg-white bg-opacity-50'}" data-index="${index}"></button>
+                                            `).join('')}
+                                        </div>
+                                    ` : ''}
                                 </div>
                                 
                                 <!-- Product Info -->
@@ -448,6 +333,11 @@
             `;
             
             document.body.insertAdjacentHTML('beforeend', modalHtml);
+            
+            // Initialize slider functionality
+            setTimeout(() => {
+                initProductSlider();
+            }, 100);
         }
         
         // Close product details modal
@@ -456,6 +346,81 @@
             if (modal) {
                 modal.remove();
             }
+        }
+
+        // Product Image Slider Functions
+        function initProductSlider() {
+            const modal = document.getElementById('productModal');
+            if (!modal) return;
+
+            const sliderItems = modal.querySelectorAll('.slider-item');
+            const prevBtn = modal.querySelector('.slider-prev');
+            const nextBtn = modal.querySelector('.slider-next');
+            const indicators = modal.querySelectorAll('.slider-indicator');
+            
+            if (sliderItems.length <= 1) return;
+
+            let currentIndex = 0;
+
+            function showSlide(index) {
+                // Hide all slides
+                sliderItems.forEach((item, i) => {
+                    item.classList.remove('opacity-100');
+                    item.classList.add('opacity-0');
+                });
+                
+                // Show current slide
+                sliderItems[index].classList.remove('opacity-0');
+                sliderItems[index].classList.add('opacity-100');
+                
+                // Update indicators
+                indicators.forEach((indicator, i) => {
+                    if (i === index) {
+                        indicator.classList.remove('bg-opacity-50');
+                        indicator.classList.add('bg-white');
+                    } else {
+                        indicator.classList.add('bg-opacity-50');
+                        indicator.classList.remove('bg-white');
+                    }
+                });
+                
+                currentIndex = index;
+            }
+
+            function nextSlide() {
+                const nextIndex = (currentIndex + 1) % sliderItems.length;
+                showSlide(nextIndex);
+            }
+
+            function prevSlide() {
+                const prevIndex = (currentIndex - 1 + sliderItems.length) % sliderItems.length;
+                showSlide(prevIndex);
+            }
+
+            // Event listeners
+            if (prevBtn) {
+                prevBtn.addEventListener('click', prevSlide);
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', nextSlide);
+            }
+            
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => showSlide(index));
+            });
+
+            // Auto-slide (optional)
+            let autoSlideInterval = setInterval(nextSlide, 4000);
+            
+            // Pause auto-slide on hover
+            modal.addEventListener('mouseenter', () => {
+                clearInterval(autoSlideInterval);
+            });
+            
+            modal.addEventListener('mouseleave', () => {
+                autoSlideInterval = setInterval(nextSlide, 4000);
+            });
         }
 
         // Initialize products
@@ -477,11 +442,39 @@
                     starsHtml += '<span class="text-gray-300">★</span>';
                 }
                 
+                // Create slider HTML for multiple images
+                const sliderHtml = product.images && product.images.length > 0 ? `
+                    <div class="product-slider relative h-48 overflow-hidden">
+                        <div class="slider-container flex transition-transform duration-300 ease-in-out" data-product-id="${product.id}">
+                            ${product.images.map((image, index) => `
+                                <img src="${image}" alt="${product.name} - Image ${index + 1}" 
+                                     class="w-full h-48 object-cover flex-shrink-0" 
+                                     style="min-width: 100%">
+                            `).join('')}
+                        </div>
+                        ${product.images.length > 1 ? `
+                            <button class="slider-prev absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg transition-all duration-200" onclick="previousImage(${product.id})">
+                                <i class="fas fa-chevron-left text-gray-700"></i>
+                            </button>
+                            <button class="slider-next absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg transition-all duration-200" onclick="nextImage(${product.id})">
+                                <i class="fas fa-chevron-right text-gray-700"></i>
+                            </button>
+                            <div class="slider-indicators absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
+                                ${product.images.map((_, index) => `
+                                    <button class="w-2 h-2 rounded-full bg-white bg-opacity-60 hover:bg-opacity-100 transition-all duration-200 ${index === 0 ? 'bg-opacity-100' : ''}" onclick="goToImage(${product.id}, ${index})"></button>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                ` : `
+                    <div class="h-48 ocean-gradient flex items-center justify-center text-6xl">
+                        📱
+                    </div>
+                `;
+                
                 return `
                     <div class="product-card pearl-shadow rounded-3xl overflow-hidden shell-border">
-                        <div class="h-48 ocean-gradient flex items-center justify-center text-6xl">
-                            ${product.image}
-                        </div>
+                        ${sliderHtml}
                         <div class="p-6">
                             <div class="flex items-center justify-between mb-2">
                                 <span class="text-xs font-medium px-3 py-1 rounded-full bg-pink-100 text-pink-600">
@@ -578,7 +571,9 @@
             } else {
                 cartItems.innerHTML = cart.map(item => `
                     <div class="flex items-center space-x-4 mb-6 p-4 rounded-2xl bg-gray-50">
-                        <div class="text-3xl">${item.image}</div>
+                        <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                            <img src="${item.images[0]}" alt="${item.name}" class="w-full h-full object-cover">
+                        </div>
                         <div class="flex-1">
                             <h4 class="font-bold text-sm">${item.name}</h4>
                             <p class="text-pink-500 font-bold">${item.price} JD</p>
@@ -678,7 +673,12 @@
 
         // Close cart when clicking outside
         document.addEventListener('click', (e) => {
-            if (!cartSidebar.contains(e.target) && !cartToggle.contains(e.target)) {
+            // Don't close if clicking on cart buttons or cart content
+            if (!cartSidebar.contains(e.target) && 
+                !cartToggle.contains(e.target) && 
+                !e.target.closest('.quantity-btn') && 
+                !e.target.closest('button[onclick*="updateQuantity"]') && 
+                !e.target.closest('button[onclick*="removeFromCart"]')) {
                 cartSidebar.classList.remove('active');
             }
         });
@@ -694,11 +694,82 @@
             });
         });
 
+        // Main page slider functions
+        const productSliders = {};
+
+        function previousImage(productId) {
+            if (!productSliders[productId]) {
+                productSliders[productId] = { currentIndex: 0 };
+            }
+            
+            const product = products.find(p => p.id === productId);
+            if (!product || !product.images || product.images.length <= 1) return;
+            
+            const slider = productSliders[productId];
+            slider.currentIndex = (slider.currentIndex - 1 + product.images.length) % product.images.length;
+            updateMainSlider(productId);
+        }
+
+        function nextImage(productId) {
+            if (!productSliders[productId]) {
+                productSliders[productId] = { currentIndex: 0 };
+            }
+            
+            const product = products.find(p => p.id === productId);
+            if (!product || !product.images || product.images.length <= 1) return;
+            
+            const slider = productSliders[productId];
+            slider.currentIndex = (slider.currentIndex + 1) % product.images.length;
+            updateMainSlider(productId);
+        }
+
+        function goToImage(productId, index) {
+            if (!productSliders[productId]) {
+                productSliders[productId] = { currentIndex: 0 };
+            }
+            
+            const product = products.find(p => p.id === productId);
+            if (!product || !product.images || index >= product.images.length) return;
+            
+            productSliders[productId].currentIndex = index;
+            updateMainSlider(productId);
+        }
+
+        function updateMainSlider(productId) {
+            const sliderContainer = document.querySelector(`[data-product-id="${productId}"]`);
+            const indicators = document.querySelectorAll(`[data-product-id="${productId}"] ~ .slider-indicators button`);
+            
+            if (!sliderContainer) return;
+            
+            const currentIndex = productSliders[productId].currentIndex;
+            const translateX = -currentIndex * 100;
+            
+            sliderContainer.style.transform = `translateX(${translateX}%)`;
+            
+            // Update indicators
+            const productCard = sliderContainer.closest('.product-card');
+            if (productCard) {
+                const indicatorButtons = productCard.querySelectorAll('.slider-indicators button');
+                indicatorButtons.forEach((button, index) => {
+                    if (index === currentIndex) {
+                        button.classList.remove('bg-opacity-60');
+                        button.classList.add('bg-opacity-100');
+                    } else {
+                        button.classList.add('bg-opacity-60');
+                        button.classList.remove('bg-opacity-100');
+                    }
+                });
+            }
+        }
+
         // Initialize the website
         document.addEventListener('DOMContentLoaded', () => {
             // Make functions globally accessible
             window.showProductDetails = showProductDetails;
             window.closeProductModal = closeProductModal;
+            window.previousImage = previousImage;
+            window.nextImage = nextImage;
+            window.goToImage = goToImage;
             
             initProducts();
             updateCartUI();
