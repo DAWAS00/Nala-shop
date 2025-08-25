@@ -1,0 +1,497 @@
+:root {
+            --ocean-blue: #E8F4F8;
+            --coral-pink: #FFB5BA;
+            --shell-white: #FFF8F5;
+            --pearl-gray: #F5F2F0;
+            --sand-beige: #F7F1E8;
+            --ocean-teal: #B8E6E6;
+            --sunset-coral: #FF9B9B;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--shell-white) 0%, var(--ocean-blue) 50%, var(--sand-beige) 100%);
+            min-height: 100vh;
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .ocean-gradient {
+            background: linear-gradient(135deg, var(--coral-pink) 0%, var(--ocean-teal) 50%, var(--shell-white) 100%);
+        }
+
+        .shell-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 181, 186, 0.3) 10%, transparent 11%),
+                radial-gradient(circle at 70% 60%, rgba(184, 230, 230, 0.3) 8%, transparent 9%),
+                radial-gradient(circle at 40% 80%, rgba(255, 155, 155, 0.2) 12%, transparent 13%);
+        }
+
+        .pearl-shadow {
+            box-shadow: 0 8px 32px rgba(255, 181, 186, 0.3), 0 4px 16px rgba(184, 230, 230, 0.2);
+        }
+
+        .shell-border {
+            border: 2px solid rgba(255, 181, 186, 0.4);
+            border-radius: 20px;
+        }
+
+        .wave-divider {
+            background: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23FFB5BA' stroke-width='2' stroke-dasharray='6%2c14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+        }
+
+        .product-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 248, 245, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 181, 186, 0.4);
+        }
+
+        .cart-slide-in {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .cart-slide-in.active {
+            transform: translateX(0);
+        }
+
+        .modal-backdrop {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 248, 245, 0.9);
+        }
+
+        .seashell-icon::before {
+            content: "🐚";
+            font-size: 1.2em;
+            margin-right: 0.5rem;
+        }
+
+        .pearl-icon::before {
+            content: "⚪";
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        .starfish-icon::before {
+            content: "⭐";
+            font-size: 1em;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #FF9B9B, #FFB5BA, #B8E6E6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-ocean {
+            background: linear-gradient(135deg, var(--coral-pink), var(--sunset-coral));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 155, 155, 0.4);
+        }
+
+        .btn-ocean:hover {
+            background: linear-gradient(135deg, var(--sunset-coral), var(--coral-pink));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 155, 155, 0.6);
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--coral-pink);
+            color: white;
+            border: none;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .quantity-btn:hover {
+            background: var(--sunset-coral);
+            transform: scale(1.1);
+        }
+
+        /* Trust Elements Styles */
+        .trust-badge {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .trust-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: rgba(236, 72, 153, 0.3);
+        }
+
+        .security-badge {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #bbf7d0;
+        }
+
+        .payment-method-badge {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .payment-method-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-proof-counter {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .trust-banner {
+            background: linear-gradient(90deg, #059669 0%, #2563eb 100%);
+            animation: trust-banner-slide 20s linear infinite;
+        }
+
+        @keyframes trust-banner-slide {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .guarantee-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guarantee-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        /* Social Media Buttons */
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-btn i {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .instagram-btn {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+
+        .instagram-btn:hover {
+            background: linear-gradient(45deg, #e6683c 0%, #dc2743 25%, #cc2366 50%, #bc1888 75%, #a91a7a 100%);
+            color: white;
+        }
+
+        .facebook-btn {
+            background: linear-gradient(45deg, #1877f2, #42a5f5);
+            color: white;
+        }
+
+        .facebook-btn:hover {
+            background: linear-gradient(45deg, #166fe5, #1976d2);
+            color: white;
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            color: white;
+        }
+
+        .whatsapp-btn:hover {
+            background: linear-gradient(45deg, #20b954, #0f7a6b);
+            color: white;
+        }
+
+        .telegram-btn {
+            background: linear-gradient(45deg, #0088cc, #229ed9);
+            color: white;
+        }
+
+        .telegram-btn:hover {
+            background: linear-gradient(45deg, #0077b3, #1976d2);
+            color: white;
+        }
+
+        /* Share Buttons */
+        .share-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Instagram Post Cards */
+        .instagram-post {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #e1e8ed;
+        }
+
+        .instagram-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .instagram-post img {
+            transition: transform 0.3s ease;
+            object-fit: cover;
+        }
+
+        .instagram-post:hover img {
+            transform: scale(1.05);
+        }
+
+        .instagram-post .absolute {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .instagram-post:hover .absolute {
+            opacity: 1;
+        }
+
+        /* Instagram-like profile styling */
+        .instagram-post .w-8.h-8 {
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Instagram-like interaction buttons */
+        .instagram-post .fas.fa-heart {
+            transition: all 0.2s ease;
+        }
+
+        .instagram-post .fas.fa-heart:hover {
+            transform: scale(1.2);
+            color: #e91e63 !important;
+        }
+
+        .instagram-post .fas.fa-comment {
+            transition: all 0.2s ease;
+        }
+
+        .instagram-post .fas.fa-comment:hover {
+            transform: scale(1.1);
+            color: #2196f3 !important;
+        }
+
+        .instagram-post .post-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .instagram-post .post-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(240, 148, 51, 0.1), rgba(188, 24, 136, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .instagram-post:hover .post-overlay {
+            opacity: 1;
+        }
+
+        /* Highlight Circles */
+        .highlight-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-circle::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 3s linear infinite;
+        }
+
+        .highlight-circle:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .review-stars {
+            color: #fbbf24;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-card {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-card::after {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-size: 4rem;
+            color: rgba(236, 72, 153, 0.1);
+            font-family: serif;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce-slow {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .animate-bounce-slow {
+            animation: bounce-slow 2s infinite;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
