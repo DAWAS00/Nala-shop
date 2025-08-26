@@ -708,7 +708,7 @@
                     console.log('Order Details:', orderSummary);
                     alert(`🎉 Order placed successfully!\n\nOrder #${orderData.orderNumber}\nTotal: ${cartTotal} JD\n\nWe'll contact you at ${customerData.phone} to confirm your order.\n\nNote: Email notifications will be available once EmailJS is configured.`);
                 } else {
-                    // Send email using EmailJS with enhanced template
+                    // Send email using EmailJS with enhanced HTML template
                     await emailjs.send('service_b2n507f', 'template_z5cruy4', {
                         to_email: 'dawasmohammad888@gmail.com',
                         customer_name: customerData.name,
@@ -716,11 +716,18 @@
                         customer_phone: customerData.phone,
                         customer_email: customerData.email,
                         customer_location: customerData.location,
-                        customization_request: customerData.customization || 'None',
+                        customization_request: customerData.customization || 'No special customization requested',
                         order_items: cart.map(item => `${item.name} × ${item.quantity} = ${item.price * item.quantity} JD`).join('\n'),
                         order_total: `${cartTotal} JD`,
                         order_number: orderData.orderNumber,
-                        order_date: orderData.date
+                        order_date: orderData.date,
+                        // Additional variables for enhanced template
+                        business_name: 'Nala Shop',
+                        business_tagline: 'Handcrafted Ocean Treasures',
+                        total_items: cart.reduce((sum, item) => sum + item.quantity, 0),
+                        currency: 'JD',
+                        support_email: 'dawasmohammad888@gmail.com',
+                        website_url: window.location.origin
                     });
                     
                     alert('🎉 Order placed successfully! You\'ll receive an email confirmation shortly.');
