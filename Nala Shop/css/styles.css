@@ -495,3 +495,50 @@
         .animate-pulse {
             animation: pulse 2s infinite;
         }
+
+/* =============================================
+   Video/Reels Player Optimizations
+   - Minimal chrome for reels
+   - Smooth fade for controls, keep visual clean
+   - Ensure video fills card nicely
+============================================= */
+.instagram-reel {
+  position: relative;
+}
+.instagram-reel .plyr--video,
+.instagram-reel .plyr__video-wrapper {
+  border-radius: 16px;
+  overflow: hidden;
+  height: 100%;
+}
+.instagram-reel video,
+.instagram-reel .plyr__poster,
+.instagram-reel .plyr__video-wrapper {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Subtle controls visibility for reels */
+.instagram-reel .plyr__controls {
+  opacity: 0;
+  transition: opacity .2s ease-in-out;
+}
+.instagram-reel:hover .plyr__controls,
+.instagram-reel .plyr--playing .plyr__controls,
+.instagram-reel .plyr--paused .plyr__controls:focus-within {
+  opacity: 1;
+}
+/* Avoid outline clutter on controls */
+.plyr__controls button:focus { outline: none; box-shadow: 0 0 0 2px rgba(236,72,153,.2); }
+
+/* Prevent layout shift: container preserves aspect ratio */
+.instagram-reel .relative { contain: paint layout; }
+
+/* Prefer reduced motion for users asking for it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

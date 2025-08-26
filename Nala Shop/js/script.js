@@ -782,3 +782,187 @@
                 el.style.transform = `translateY(${Math.sin(Date.now() / 1000) * 5}px)`;
             });
         }, 50);
+    });
+
+/* =============================================
+   Video performance + Plyr initialization (lightweight)
+   - Lazy attach video sources when in-viewport
+   - Async load Plyr JS (CSS already in <head>)
+   - Auto play/pause based on visibility
+   - Unload sources when far offscreen to save memory
+   - Site-wide image optimization (lazy + async decoding)
+============================================= */
+(function () {
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      if (document.querySelector(`script[src="${src}"]`)) return resolve();
+      const s = document.createElement('script');
+      s.src = src;
+      s.async = true;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  // Load Plyr only when needed
+  const plyrSrc = 'https://cdn.plyr.io/3.7.8/plyr.polyfilled.js';
+  const plyrReady = typeof window.Plyr !== 'undefined' ? Promise.resolve() : loadScript(plyrSrc).catch(() => Promise.resolve());
+
+  const unloadTimers = new Map();
+
+  function prepareVideo(video) {
+    if (video.dataset.prepared === 'true') return;
+    // Ensure efficient defaults
+    video.setAttribute('preload', 'metadata'); // Keep metadata for poster frames
+    video.setAttribute('playsinline', '');
+    // video.muted = true; // removed to respect user control
+
+    // For lazy loading, only move src to data-src if not already done
+    const sources = Array.from(video.querySelectorAll('source'));
+    sources.forEach((srcEl) => {
+      if (srcEl.getAttribute('src') && !srcEl.dataset.src) {
+        srcEl.dataset.src = srcEl.getAttribute('src');
+        srcEl.removeAttribute('src');
+      }
+    });
+
+    video.dataset.prepared = 'true';
+  }
+
+  function loadVideoSources(video) {
+    const sources = video.querySelectorAll('source[data-src]');
+    sources.forEach((srcEl) => {
+      if (!srcEl.getAttribute('src')) srcEl.setAttribute('src', srcEl.dataset.src);
+    });
+    try { video.load(); } catch (e) {}
+    video.dataset.loaded = 'true';
+  }
+
+  function initPlyr(video) {
+    if (video._plyrInit) return Promise.resolve(video._plyr);
+    return plyrReady.then(() => {
+      if (typeof window.Plyr === 'undefined') return undefined; // fail-soft if CDN blocked
+      const instance = new Plyr(video, {
+        ratio: '9:16',
+        clickToPlay: true,
+        hideControls: true,
+        resetOnEnd: false,
+        controls: ['play', 'progress', 'mute', 'volume', 'settings', 'pip', 'fullscreen'],
+        loop: { active: true }
+    });
+      video._plyr = instance;
+      video._plyrInit = true;
+      return instance;
+    });
+  }
+
+  function scheduleUnload(video) {
+    // Avoid stacking timers
+    if (unloadTimers.has(video)) clearTimeout(unloadTimers.get(video));
+    const t = setTimeout(() => {
+      // If not near viewport and not actively being watched, unload sources to free memory
+      const rect = video.getBoundingClientRect();
+      const offscreen = rect.top > window.innerHeight * 2 || rect.bottom < -window.innerHeight;
+      const isPlaying = !video.paused && !video.ended && video.readyState > 2;
+      if (!isPlaying && offscreen) {
+        Array.from(video.querySelectorAll('source')).forEach((srcEl) => {
+          const src = srcEl.getAttribute('src');
+          if (src) {
+            srcEl.dataset.src = src;
+            srcEl.removeAttribute('src');
+          }
+        });
+        try { video.load(); } catch (e) {}
+        video.removeAttribute('src');
+        video.dataset.loaded = '';
+      }
+    }, 20000);
+    unloadTimers.set(video, t);
+  }
+
+  function handleVisibilityChange(videos) {
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        videos.forEach((v) => { try { v.pause(); } catch (e) {} });
+      }
+    }, { passive: true });
+  }
+
+  function setupVideoObservers() {
+    const videos = Array.from(document.querySelectorAll('video.plyr-video'));
+    if (!videos.length) return;
+
+    videos.forEach(prepareVideo);
+
+    // Observe viewport intersection
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        if (entry.isIntersecting && entry.intersectionRatio > 0.35) {
+          // In view: load + init + (optional) autoplay
+          if (video.dataset.optional) {
+            loadVideoSources(video);
+          }
+          initPlyr(video).then(() => {
+            if (!prefersReducedMotion) {
+              try {
+                video.play().catch(() => {});
+              } catch (e) {}
+            }
+            clearTimeout(unloadTimers.get(video));
+            unloadTimers.delete(video);
+          });
+        } else {
+          // Out of view: pause and consider unloading later
+          try { video.pause(); } catch (e) {}
+          scheduleUnload(video);
+        }
+      });
+    }, { threshold: [0, 0.35, 0.6], rootMargin: '120px 0px 240px 0px' });
+
+    videos.forEach((v) => io.observe(v));
+    handleVisibilityChange(videos);
+  }
+  
+
+  // Optimize images site-wide
+  function optimizeImages() {
+    const imgs = document.querySelectorAll('img');
+    const vh = window.innerHeight || 800;
+    imgs.forEach((img) => {
+      const rect = img.getBoundingClientRect();
+      const aboveFold = rect.top < vh * 1.2;
+      if (!aboveFold) {
+        if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+      } else {
+        if (!img.hasAttribute('loading')) img.setAttribute('loading', 'eager');
+        if (!img.hasAttribute('fetchpriority')) img.setAttribute('fetchpriority', 'high');
+      }
+      if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+    });
+  }
+
+  function onReady(fn) {
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      fn();
+    } else {
+      document.addEventListener('DOMContentLoaded', fn, { once: true });
+    }
+  }
+
+  onReady(() => {
+    // Defer heavier work until browser is idle to keep TTI snappy
+    const run = () => {
+      try { setupVideoObservers(); } catch (e) {}
+      try { optimizeImages(); } catch (e) {}
+    };
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(run, { timeout: 2000 });
+    } else {
+      setTimeout(run, 200);
+    }
+  });
+})();
