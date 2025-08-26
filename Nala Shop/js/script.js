@@ -782,7 +782,8 @@
                 el.style.transform = `translateY(${Math.sin(Date.now() / 1000) * 5}px)`;
             });
         }, 50);
-    });
+     // Close the initProducts function
+    initProducts(); // Call the function to initialize products
 
 /* =============================================
    Video performance + Plyr initialization (lightweight)
