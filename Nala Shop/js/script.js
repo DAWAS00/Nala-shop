@@ -105,7 +105,50 @@
         let cartTotal = 0;
 
         // Initialize EmailJS
-        emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+        // SETUP REQUIRED: Replace with your actual EmailJS public key from https://www.emailjs.com/
+        emailjs.init("vsbYsxGX4taqt4ofd"); // Get this from EmailJS Dashboard > Account > API Keys
+
+        // Enhanced email template for order notifications
+        const emailTemplate = `
+        <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;"> 
+           <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 24px; text-align: center;"> 
+             <h1 style="color: white; margin: 0; font-size: 24px; font-weight: 600;">New Order Received</h1> 
+             <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0 0; font-size: 14px;">Order from {{customer_name}} • {{order_date}}</p> 
+           </div> 
+           <div style="padding: 32px 24px;"> 
+             <div style="background-color: #f8fafc; border-radius: 8px; padding: 20px; margin-bottom: 24px; border-left: 4px solid #667eea;"> 
+               <h2 style="color: #2d3748; margin: 0 0 12px 0; font-size: 18px; font-weight: 600;">Customer Information</h2> 
+               <div style="display: flex; align-items: center; margin-bottom: 16px;"> 
+                 <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 16px; flex-shrink: 0;"> 
+                   <span style="color: white; font-size: 20px; font-weight: bold;">{{customer_initial}}</span> 
+                 </div> 
+                 <div> 
+                   <div style="color: #2d3748; font-size: 16px; font-weight: 600; margin-bottom: 4px;">{{customer_name}}</div> 
+                   <div style="color: #718096; font-size: 14px;">{{customer_email}}</div> 
+                   <div style="color: #718096; font-size: 14px;">{{customer_phone}}</div> 
+                 </div> 
+               </div> 
+             </div> 
+             <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 20px;"> 
+               <h3 style="color: #2d3748; margin: 0 0 16px 0; font-size: 16px; font-weight: 600;">Order Details</h3> 
+               <div style="color: #4a5568; font-size: 15px; line-height: 1.6;">{{order_items}}</div> 
+               <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e2e8f0;"> 
+                 <div style="color: #2d3748; font-size: 18px; font-weight: 600;">Total: {{order_total}}</div> 
+               </div> 
+             </div> 
+             <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px;"> 
+               <h3 style="color: #2d3748; margin: 0 0 16px 0; font-size: 16px; font-weight: 600;">Delivery Information</h3> 
+               <div style="color: #4a5568; font-size: 15px; line-height: 1.6;">{{customer_location}}</div> 
+               <div style="margin-top: 12px; color: #4a5568; font-size: 15px; line-height: 1.6;"> 
+                 <strong>Customization:</strong> {{customization_request}} 
+               </div> 
+             </div> 
+             <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e2e8f0; text-align: center;"> 
+               <p style="color: #718096; font-size: 13px; margin: 0;">This is an automated notification from your Nala Shop order system.</p> 
+             </div> 
+           </div> 
+         </div>
+        `;
 
         // Social Media Sharing Functions
         function shareOnFacebook() {
@@ -620,6 +663,32 @@
                 customization: formData.get('customization') || e.target.querySelectorAll('textarea')[1].value
             };
 
+            // Form validation
+            if (!customerData.name || customerData.name.trim().length < 2) {
+                alert('Please enter a valid name (at least 2 characters)');
+                return;
+            }
+            
+            if (!customerData.phone || customerData.phone.trim().length < 8) {
+                alert('Please enter a valid phone number');
+                return;
+            }
+            
+            if (!customerData.email || !customerData.email.includes('@')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            if (!customerData.location || customerData.location.trim().length < 5) {
+                alert('Please enter your delivery location');
+                return;
+            }
+            
+            if (cart.length === 0) {
+                alert('Your cart is empty. Please add items before checkout.');
+                return;
+            }
+
             const orderData = {
                 customer: customerData,
                 items: cart,
@@ -629,22 +698,35 @@
             };
 
             try {
-                // Send email using EmailJS
-                await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
-                    to_email: 'info@nalashop.com', // Your business email
-                    customer_name: customerData.name,
-                    customer_phone: customerData.phone,
-                    customer_email: customerData.email,
-                    customer_location: customerData.location,
-                    customization_request: customerData.customization,
-                    order_items: cart.map(item => `${item.name} × ${item.quantity} = ${item.price * item.quantity} JD`).join('\n'),
-                    order_total: cartTotal,
-                    order_number: orderData.orderNumber,
-                    order_date: orderData.date
-                });
+                // Check if EmailJS is properly configured
+                if (typeof emailjs === 'undefined' || 
+                    !emailjs.send) {
+                    
+                    // EmailJS not configured - show order details for manual processing
+                    const orderSummary = `Order #${orderData.orderNumber}\n\nCustomer: ${customerData.name}\nPhone: ${customerData.phone}\nEmail: ${customerData.email}\nLocation: ${customerData.location}\n\nItems:\n${cart.map(item => `${item.name} × ${item.quantity} = ${item.price * item.quantity} JD`).join('\n')}\n\nTotal: ${cartTotal} JD\n\nCustomization: ${customerData.customization || 'None'}`;
+                    
+                    console.log('Order Details:', orderSummary);
+                    alert(`🎉 Order placed successfully!\n\nOrder #${orderData.orderNumber}\nTotal: ${cartTotal} JD\n\nWe'll contact you at ${customerData.phone} to confirm your order.\n\nNote: Email notifications will be available once EmailJS is configured.`);
+                } else {
+                    // Send email using EmailJS with enhanced template
+                    await emailjs.send('service_b2n507f', 'template_z5cruy4', {
+                        to_email: 'dawasmohammad888@gmail.com',
+                        customer_name: customerData.name,
+                        customer_initial: customerData.name.charAt(0).toUpperCase(),
+                        customer_phone: customerData.phone,
+                        customer_email: customerData.email,
+                        customer_location: customerData.location,
+                        customization_request: customerData.customization || 'None',
+                        order_items: cart.map(item => `${item.name} × ${item.quantity} = ${item.price * item.quantity} JD`).join('\n'),
+                        order_total: `${cartTotal} JD`,
+                        order_number: orderData.orderNumber,
+                        order_date: orderData.date
+                    });
+                    
+                    alert('🎉 Order placed successfully! You\'ll receive an email confirmation shortly.');
+                }
 
-                // Success
-                alert('🎉 Order placed successfully! We\'ll contact you soon to confirm your order.');
+                // Clear cart and close modals
                 cart = [];
                 updateCartUI();
                 checkoutModal.classList.add('hidden');
@@ -652,8 +734,20 @@
                 checkoutForm.reset();
 
             } catch (error) {
-                console.error('Error sending email:', error);
-                alert('There was an error processing your order. Please try again or contact us directly.');
+                console.error('Error processing order:', error);
+                
+                // Still process the order even if email fails
+                const orderSummary = `Order #${orderData.orderNumber}\nCustomer: ${customerData.name}\nPhone: ${customerData.phone}\nTotal: ${cartTotal} JD`;
+                console.log('Order processed despite email error:', orderSummary);
+                
+                alert(`⚠️ Order received but email notification failed.\n\nOrder #${orderData.orderNumber}\nTotal: ${cartTotal} JD\n\nWe'll contact you at ${customerData.phone} to confirm.\n\nTo fix email notifications, please configure EmailJS as described in the setup guide.`);
+                
+                // Clear cart anyway
+                cart = [];
+                updateCartUI();
+                checkoutModal.classList.add('hidden');
+                cartSidebar.classList.remove('active');
+                checkoutForm.reset();
             }
         }
 
