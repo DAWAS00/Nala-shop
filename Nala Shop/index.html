@@ -22,6 +22,9 @@
     <style>
  
     </style>
+    <!-- Leaflet.js for interactive maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
     <!-- Header -->
@@ -982,7 +985,19 @@
                     
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Delivery Location *</label>
-                        <textarea required class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-pink-400 focus:border-transparent h-24" placeholder="Please provide your complete address in Jordan"></textarea>
+                        <div class="space-y-3">
+                            <div class="relative">
+                                <textarea id="deliveryAddress" required class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-pink-400 focus:border-transparent h-24" placeholder="Please provide your complete address in Jordan" readonly></textarea>
+                                <div class="absolute inset-0 bg-gray-50 bg-opacity-50 rounded-2xl flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity cursor-pointer" onclick="openLocationModal()">
+                                    <span class="text-sm text-gray-600 font-medium">Click to select on map</span>
+                                </div>
+                            </div>
+                            <button type="button" onclick="openLocationModal()" class="w-full px-4 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-2xl font-medium hover:from-pink-600 hover:to-purple-700 transition-all duration-300 flex items-center justify-center space-x-2">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Select Location on Map</span>
+                                <i class="fas fa-external-link-alt text-sm"></i>
+                            </button>
+                        </div>
                     </div>
                     
                     <div>
@@ -1117,6 +1132,113 @@
                         <i class="fas fa-times mr-2"></i>
                         Close
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location Selection Modal -->
+    <div id="locationModal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+        <div class="location-modal rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <!-- Modal Header -->
+            <div class="location-modal-header p-6 border-b border-gray-200">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-playfair font-bold text-gradient flex items-center">
+                        <i class="fas fa-map-marker-alt mr-3 text-pink-500"></i>
+                        Select Your Location
+                    </h2>
+                    <button onclick="closeLocationModal()" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors">
+                        <i class="fas fa-times text-gray-600"></i>
+                    </button>
+                </div>
+                <p class="text-gray-600 mt-2">Choose your delivery location on the map or enter your address manually</p>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="location-modal-content flex flex-col lg:flex-row h-[600px]">
+                <!-- Map Container -->
+                <div class="flex-1 relative">
+                    <div id="locationMap" class="w-full h-full bg-gray-100 flex items-center justify-center">
+                        <div class="text-center text-gray-500">
+                            <i class="fas fa-map text-4xl mb-4"></i>
+                            <p>Loading interactive map...</p>
+                        </div>
+                    </div>
+                    <!-- Map Controls -->
+                    <div class="absolute top-4 right-4 space-y-2">
+                        <button id="getCurrentLocation" class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors" title="Get Current Location">
+                            <i class="fas fa-crosshairs text-pink-500"></i>
+                        </button>
+                        <button id="searchLocation" class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors" title="Search Location">
+                            <i class="fas fa-search text-pink-500"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Address Form -->
+                <div class="w-full lg:w-80 p-6 bg-gray-50 border-l border-gray-200">
+                    <h3 class="text-lg font-bold mb-4 text-gray-800">Delivery Address</h3>
+                    
+                    <!-- Search Input -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Search Address</label>
+                        <div class="relative">
+                            <input type="text" id="addressSearch" placeholder="Search for a location..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                            <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+
+                    <!-- Address Details -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Street Address</label>
+                            <input type="text" id="streetAddress" placeholder="Enter street address" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                                <input type="text" id="cityAddress" placeholder="City" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Area</label>
+                                <input type="text" id="areaAddress" placeholder="Area" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Building/Apartment</label>
+                            <input type="text" id="building" placeholder="Building number, floor, apartment" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Additional Notes</label>
+                            <textarea id="locationNotes" placeholder="Landmarks, special instructions..." rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent resize-none"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Selected Location Display -->
+                    <div id="selectedLocationDisplay" class="mt-4 p-4 bg-white rounded-xl border border-gray-200 hidden">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-pink-500 mt-1"></i>
+                            <div class="flex-1">
+                                <p class="font-medium text-gray-800" id="selectedAddress">Selected Address</p>
+                                <p class="text-sm text-gray-600" id="selectedCoordinates">Coordinates</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-6 space-y-3">
+                        <button onclick="confirmLocationSelection()" class="w-full btn-ocean py-3">
+                            <i class="fas fa-check mr-2"></i>
+                            Confirm Location
+                        </button>
+                        <button onclick="closeLocationModal()" class="w-full px-6 py-3 border border-gray-300 rounded-2xl font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-times mr-2"></i>
+                            Cancel
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

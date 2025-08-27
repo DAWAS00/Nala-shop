@@ -690,11 +690,30 @@
             e.preventDefault();
             
             const formData = new FormData(checkoutForm);
+            
+            // Get location data from the delivery address field
+            const deliveryAddressField = document.getElementById('deliveryAddress');
+            const locationText = deliveryAddressField ? deliveryAddressField.value : (formData.get('location') || e.target.querySelector('textarea').value);
+            
+            // Prepare location data object
+            const locationData = {
+                address: locationText,
+                coordinates: selectedLocation ? `${selectedLocation.lat}, ${selectedLocation.lng}` : null,
+                lat: selectedLocation ? selectedLocation.lat : null,
+                lng: selectedLocation ? selectedLocation.lng : null,
+                streetAddress: document.getElementById('streetAddress')?.value || '',
+                city: document.getElementById('cityAddress')?.value || '',
+                area: document.getElementById('areaAddress')?.value || '',
+                building: document.getElementById('building')?.value || '',
+                notes: document.getElementById('locationNotes')?.value || ''
+            };
+            
             const customerData = {
                 name: formData.get('name') || e.target.querySelector('input[type="text"]').value,
                 phone: formData.get('phone') || e.target.querySelector('input[type="tel"]').value,
                 email: formData.get('email') || e.target.querySelector('input[type="email"]').value,
-                location: formData.get('location') || e.target.querySelector('textarea').value,
+                location: locationText,
+                locationData: locationData,
                 customization: formData.get('customization') || e.target.querySelectorAll('textarea')[1].value
             };
 
@@ -743,6 +762,31 @@
                     console.log('Order Details:', orderSummary);
                     showOrderSuccessModal(orderData.orderNumber, cartTotal, customerData.phone, 'EmailJS not configured');
                 } else {
+                    // Prepare detailed location information for email
+                    const locationDetails = [];
+                    if (customerData.locationData.coordinates) {
+                        locationDetails.push(`📍 Coordinates: ${customerData.locationData.coordinates}`);
+                    }
+                    if (customerData.locationData.streetAddress) {
+                        locationDetails.push(`🏠 Street: ${customerData.locationData.streetAddress}`);
+                    }
+                    if (customerData.locationData.city) {
+                        locationDetails.push(`🏙️ City: ${customerData.locationData.city}`);
+                    }
+                    if (customerData.locationData.area) {
+                        locationDetails.push(`📍 Area: ${customerData.locationData.area}`);
+                    }
+                    if (customerData.locationData.building) {
+                        locationDetails.push(`🏢 Building: ${customerData.locationData.building}`);
+                    }
+                    if (customerData.locationData.notes) {
+                        locationDetails.push(`📝 Notes: ${customerData.locationData.notes}`);
+                    }
+                    
+                    const detailedLocation = locationDetails.length > 0 
+                        ? `${customerData.location}\n\nDetailed Location Info:\n${locationDetails.join('\n')}`
+                        : customerData.location;
+                    
                     // Send email using EmailJS with enhanced HTML template
                     await emailjs.send('service_b2n507f', 'template_z5cruy4', {
                         to_email: 'dawasmohammad888@gmail.com',
@@ -750,7 +794,7 @@
                         customer_initial: customerData.name.charAt(0).toUpperCase(),
                         customer_phone: customerData.phone,
                         customer_email: customerData.email,
-                        customer_location: customerData.location,
+                        customer_location: detailedLocation,
                         customization_request: customerData.customization || 'No special customization requested',
                         order_items: cart.map(item => `${item.name} × ${item.quantity} = ${item.price * item.quantity} JD`).join('\n'),
                         order_total: `${cartTotal} JD`,
@@ -762,7 +806,14 @@
                         total_items: cart.reduce((sum, item) => sum + item.quantity, 0),
                         currency: 'JD',
                         support_email: 'dawasmohammad888@gmail.com',
-                        website_url: window.location.origin
+                        website_url: window.location.origin,
+                        // Location-specific data
+                        location_coordinates: customerData.locationData.coordinates || 'Not provided',
+                        location_street: customerData.locationData.streetAddress || 'Not provided',
+                        location_city: customerData.locationData.city || 'Not provided',
+                        location_area: customerData.locationData.area || 'Not provided',
+                        location_building: customerData.locationData.building || 'Not provided',
+                        location_notes: customerData.locationData.notes || 'No additional notes'
                     });
                     
                     showOrderSuccessModal(orderData.orderNumber, cartTotal, customerData.phone, 'Email confirmation sent');
@@ -921,6 +972,246 @@
         }, 50);
      // Close the initProducts function
     initProducts(); // Call the function to initialize products
+
+// Location Selection Functions
+let locationMap;
+let selectedLocation = null;
+let locationMarker = null;
+
+function openLocationModal() {
+    const modal = document.getElementById('locationModal');
+    modal.classList.remove('hidden');
+    
+    // Initialize map after modal is visible
+    setTimeout(() => {
+        initLocationMap();
+    }, 100);
+}
+
+function closeLocationModal() {
+    const modal = document.getElementById('locationModal');
+    modal.classList.add('hidden');
+    
+    // Clear search input
+    const searchInput = document.getElementById('addressSearch');
+    if (searchInput) {
+        searchInput.value = '';
+    }
+}
+
+function initLocationMap() {
+    if (locationMap) {
+        locationMap.invalidateSize();
+        return;
+    }
+    
+    // Default to Amman, Jordan coordinates
+    const defaultLat = 31.9539;
+    const defaultLng = 35.9106;
+    
+    // Initialize Leaflet map
+    locationMap = L.map('locationMap').setView([defaultLat, defaultLng], 13);
+    
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 18
+    }).addTo(locationMap);
+    
+    // Add click event to map
+    locationMap.on('click', function(e) {
+        selectLocationOnMap(e.latlng.lat, e.latlng.lng);
+    });
+    
+    // Setup map controls
+    setupMapControls();
+    
+    // Setup address search
+    setupAddressSearch();
+}
+
+function selectLocationOnMap(lat, lng) {
+    // Remove existing marker
+    if (locationMarker) {
+        locationMap.removeLayer(locationMarker);
+    }
+    
+    // Add new marker
+    locationMarker = L.marker([lat, lng], {
+        icon: L.divIcon({
+            className: 'custom-location-marker',
+            html: '<i class="fas fa-map-marker-alt"></i>',
+            iconSize: [30, 30],
+            iconAnchor: [15, 30]
+        })
+    }).addTo(locationMap);
+    
+    // Store selected location
+    selectedLocation = { lat, lng };
+    
+    // Reverse geocoding to get address
+    reverseGeocode(lat, lng);
+    
+    // Update selected location display
+    updateSelectedLocationDisplay(lat, lng);
+}
+
+function reverseGeocode(lat, lng) {
+    // Use Nominatim for reverse geocoding
+    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.display_name) {
+                const address = data.display_name;
+                updateDeliveryAddress(address);
+                
+                // Update address form fields
+                updateAddressForm(data.address || {});
+            }
+        })
+        .catch(error => {
+            console.error('Reverse geocoding error:', error);
+            updateDeliveryAddress(`Location: ${lat.toFixed(6)}, ${lng.toFixed(6)}`);
+        });
+}
+
+function updateDeliveryAddress(address) {
+    const deliveryAddressField = document.getElementById('deliveryAddress');
+    if (deliveryAddressField) {
+        deliveryAddressField.value = address;
+    }
+}
+
+function updateAddressForm(addressData) {
+    // Update form fields if they exist in the modal
+    const streetField = document.getElementById('streetAddress');
+    const cityField = document.getElementById('cityAddress');
+    const areaField = document.getElementById('areaAddress');
+    
+    if (streetField && addressData.road) {
+        streetField.value = addressData.road;
+    }
+    if (cityField && addressData.city) {
+        cityField.value = addressData.city;
+    }
+    if (areaField && addressData.suburb) {
+        areaField.value = addressData.suburb;
+    }
+}
+
+function updateSelectedLocationDisplay(lat, lng) {
+    const display = document.getElementById('selectedLocationDisplay');
+    if (display) {
+        display.innerHTML = `
+            <div class="flex items-center space-x-2 text-sm text-gray-600">
+                <i class="fas fa-map-marker-alt text-pink-500"></i>
+                <span>Selected: ${lat.toFixed(6)}, ${lng.toFixed(6)}</span>
+            </div>
+        `;
+    }
+}
+
+function setupMapControls() {
+    // Get current location button
+    const getCurrentLocationBtn = document.getElementById('getCurrentLocation');
+    if (getCurrentLocationBtn) {
+        getCurrentLocationBtn.addEventListener('click', function() {
+            if (navigator.geolocation) {
+                getCurrentLocationBtn.innerHTML = '<i class="fas fa-spinner fa-spin text-pink-500"></i>';
+                
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+                        
+                        locationMap.setView([lat, lng], 16);
+                        selectLocationOnMap(lat, lng);
+                        
+                        getCurrentLocationBtn.innerHTML = '<i class="fas fa-crosshairs text-pink-500"></i>';
+                    },
+                    function(error) {
+                        console.error('Geolocation error:', error);
+                        alert('Unable to get your current location. Please select manually on the map.');
+                        getCurrentLocationBtn.innerHTML = '<i class="fas fa-crosshairs text-pink-500"></i>';
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 300000
+                    }
+                );
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
+        });
+    }
+}
+
+function setupAddressSearch() {
+    const searchInput = document.getElementById('addressSearch');
+    if (searchInput) {
+        let searchTimeout;
+        
+        searchInput.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            const query = this.value.trim();
+            
+            if (query.length > 2) {
+                searchTimeout = setTimeout(() => {
+                    searchAddress(query);
+                }, 500);
+            }
+        });
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const query = this.value.trim();
+                if (query.length > 2) {
+                    searchAddress(query);
+                }
+            }
+        });
+    }
+}
+
+function searchAddress(query) {
+    // Use Nominatim for geocoding
+    const searchUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query + ', Jordan')}&limit=5&addressdetails=1`;
+    
+    fetch(searchUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.length > 0) {
+                const result = data[0];
+                const lat = parseFloat(result.lat);
+                const lng = parseFloat(result.lon);
+                
+                locationMap.setView([lat, lng], 16);
+                selectLocationOnMap(lat, lng);
+            } else {
+                alert('Location not found. Please try a different search term.');
+            }
+        })
+        .catch(error => {
+            console.error('Geocoding error:', error);
+            alert('Error searching for location. Please try again.');
+        });
+}
+
+function confirmLocationSelection() {
+    if (selectedLocation) {
+        closeLocationModal();
+        // The address is already updated in the delivery address field
+    } else {
+        alert('Please select a location on the map first.');
+    }
+}
+
+// Make functions globally accessible
+window.openLocationModal = openLocationModal;
+window.closeLocationModal = closeLocationModal;
+window.confirmLocationSelection = confirmLocationSelection;
 
 /* =============================================
    Video performance + Plyr initialization (lightweight)
