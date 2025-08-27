@@ -228,7 +228,7 @@
 
         checkoutBtn.addEventListener('click', () => {
             if (cart.length === 0) {
-                alert('Your cart is empty!');
+                showEmptyCartModal();
                 return;
             }
             showCheckoutModal();
@@ -650,6 +650,41 @@
             checkoutModal.classList.remove('hidden');
         }
 
+        // Show empty cart modal
+        function showEmptyCartModal() {
+            const emptyCartModal = document.getElementById('emptyCartModal');
+            emptyCartModal.classList.remove('hidden');
+        }
+
+        // Close empty cart modal
+        function closeEmptyCartModal() {
+            const emptyCartModal = document.getElementById('emptyCartModal');
+            emptyCartModal.classList.add('hidden');
+            // Close cart sidebar and scroll to products
+            cartSidebar.classList.remove('active');
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Show order success modal
+        function showOrderSuccessModal(orderNumber, total, phone, status) {
+            const orderSuccessModal = document.getElementById('orderSuccessModal');
+            const orderNumberEl = orderSuccessModal.querySelector('.order-number');
+            const orderTotalEl = orderSuccessModal.querySelector('.order-total');
+            const orderContactEl = orderSuccessModal.querySelector('.order-contact');
+            
+            orderNumberEl.textContent = `Order #${orderNumber}`;
+            orderTotalEl.textContent = `Total: ${total} JD`;
+            orderContactEl.textContent = `We'll contact you at ${phone}`;
+            
+            orderSuccessModal.classList.remove('hidden');
+        }
+
+        // Close order success modal
+        function closeOrderSuccessModal() {
+            const orderSuccessModal = document.getElementById('orderSuccessModal');
+            orderSuccessModal.classList.add('hidden');
+        }
+
         // Handle checkout
         async function handleCheckout(e) {
             e.preventDefault();
@@ -706,7 +741,7 @@
                     const orderSummary = `Order #${orderData.orderNumber}\n\nCustomer: ${customerData.name}\nPhone: ${customerData.phone}\nEmail: ${customerData.email}\nLocation: ${customerData.location}\n\nItems:\n${cart.map(item => `${item.name} × ${item.quantity} = ${item.price * item.quantity} JD`).join('\n')}\n\nTotal: ${cartTotal} JD\n\nCustomization: ${customerData.customization || 'None'}`;
                     
                     console.log('Order Details:', orderSummary);
-                    alert(`🎉 Order placed successfully!\n\nOrder #${orderData.orderNumber}\nTotal: ${cartTotal} JD\n\nWe'll contact you at ${customerData.phone} to confirm your order.\n\nNote: Email notifications will be available once EmailJS is configured.`);
+                    showOrderSuccessModal(orderData.orderNumber, cartTotal, customerData.phone, 'EmailJS not configured');
                 } else {
                     // Send email using EmailJS with enhanced HTML template
                     await emailjs.send('service_b2n507f', 'template_z5cruy4', {
@@ -730,7 +765,7 @@
                         website_url: window.location.origin
                     });
                     
-                    alert('🎉 Order placed successfully! You\'ll receive an email confirmation shortly.');
+                    showOrderSuccessModal(orderData.orderNumber, cartTotal, customerData.phone, 'Email confirmation sent');
                 }
 
                 // Clear cart and close modals
@@ -747,7 +782,7 @@
                 const orderSummary = `Order #${orderData.orderNumber}\nCustomer: ${customerData.name}\nPhone: ${customerData.phone}\nTotal: ${cartTotal} JD`;
                 console.log('Order processed despite email error:', orderSummary);
                 
-                alert(`⚠️ Order received but email notification failed.\n\nOrder #${orderData.orderNumber}\nTotal: ${cartTotal} JD\n\nWe'll contact you at ${customerData.phone} to confirm.\n\nTo fix email notifications, please configure EmailJS as described in the setup guide.`);
+                showOrderSuccessModal(orderData.orderNumber, cartTotal, customerData.phone, 'Email notification failed - will contact you directly');
                 
                 // Clear cart anyway
                 cart = [];
@@ -871,6 +906,7 @@
             window.previousImage = previousImage;
             window.nextImage = nextImage;
             window.goToImage = goToImage;
+            window.closeOrderSuccessModal = closeOrderSuccessModal;
             
             initProducts();
             updateCartUI();
