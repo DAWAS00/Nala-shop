@@ -1,28 +1,51 @@
-// <!-- Hero Slideshow Script -->
-  
-  document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('.slideshow-image');
-            let currentIndex = 0;
+// Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (mobileMenuToggle && mobileMenu) {
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+        // Toggle mobile menu
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
             
-            function showNextImage() {
-                // Hide current image
-                images[currentIndex].classList.remove('active');
-                images[currentIndex].style.opacity = '0';
-                
-                // Move to next image
-                currentIndex = (currentIndex + 1) % images.length;
-                
-                // Show next image
-                images[currentIndex].classList.add('active');
-                images[currentIndex].style.opacity = '1';
+            // Toggle hamburger icon
+            const svg = mobileMenuToggle.querySelector('svg');
+            const path = svg.querySelector('path');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                // Show hamburger icon
+                path.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            } else {
+                // Show X icon
+                path.setAttribute('d', 'M6 18L18 6M6 6l12 12');
             }
-            
-            // Start slideshow - change image every 5 seconds
-            setInterval(showNextImage, 5000);
         });
 
+        // Close mobile menu when clicking on a link
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                // Reset to hamburger icon
+                const svg = mobileMenuToggle.querySelector('svg');
+                const path = svg.querySelector('path');
+                path.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            });
+        });
 
-
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+                // Reset to hamburger icon
+                const svg = mobileMenuToggle.querySelector('svg');
+                const path = svg.querySelector('path');
+                path.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            }
+        });
+    }
+});
 
 // Product data
         const products = [
