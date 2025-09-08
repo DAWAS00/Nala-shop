@@ -80,19 +80,22 @@
 
 
     <!-- Hero Section -->
- 
-
     <section id="home" class="py-32 relative overflow-hidden">
         <div class="absolute inset-0 z-0">
             <!-- Slideshow Background -->
             <div id="hero-slideshow" class="w-full h-full relative">
-                <img src="images/18.jpeg" alt="Nala Shop Collection" class="slideshow-image active absolute inset-0 w-full h-full object-cover transition-opacity duration-1000">
-                <img src="images/19.jpeg" alt="Nala Shop Collection" class="slideshow-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
-                <img src="images/20.jpeg" alt="Nala Shop Collection" class="slideshow-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
-                <img src="images/21.jpeg" alt="Nala Shop Collection" class="slideshow-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
-                <img src="images/22.jpeg" alt="Nala Shop Collection" class="slideshow-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
-                <img src="images/23.jpeg" alt="Nala Shop Collection" class="slideshow-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
-                <img src="images/10.jpg" alt="Nala Shop Collection" class="slideshow-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+                <!-- Loading placeholder -->
+                <div class="slideshow-loading absolute inset-0 bg-gradient-to-br from-pink-100 to-blue-100 flex items-center justify-center">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-500"></div>
+                </div>
+                
+                <img src="images/18.jpeg" alt="Nala Shop Collection" class="slideshow-image active absolute inset-0 w-full h-full object-cover transition-all duration-1000" data-index="0" loading="eager">
+                <img data-src="images/19.jpeg" alt="Nala Shop Collection" class="slideshow-image lazy absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-0" data-index="1" loading="lazy">
+                <img data-src="images/20.jpeg" alt="Nala Shop Collection" class="slideshow-image lazy absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-0" data-index="2" loading="lazy">
+                <img data-src="images/21.jpeg" alt="Nala Shop Collection" class="slideshow-image lazy absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-0" data-index="3" loading="lazy">
+                <img data-src="images/22.jpeg" alt="Nala Shop Collection" class="slideshow-image lazy absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-0" data-index="4" loading="lazy">
+                <img data-src="images/23.jpeg" alt="Nala Shop Collection" class="slideshow-image lazy absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-0" data-index="5" loading="lazy">
+                <img data-src="images/10.jpg" alt="Nala Shop Collection" class="slideshow-image lazy absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-0" data-index="6" loading="lazy">
             </div>
             <div class="absolute inset-0 bg-black bg-opacity-50"></div>
             
@@ -259,53 +262,7 @@
 
 
 
-    <!-- Trust & Security Section -->
-    <section class="py-16">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-playfair font-bold text-gradient mb-4">Shop with Confidence</h2>
-                <p class="text-gray-600">Your satisfaction and security are our top priorities</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- Money Back Guarantee -->
-                <div class="text-center p-6 product-card pearl-shadow rounded-2xl shell-border">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
-                        <i class="fas fa-shield-alt text-2xl text-green-600"></i>
-                    </div>
-                    <h3 class="font-bold mb-2">30-Day Guarantee</h3>
-                    <p class="text-sm text-gray-600">Not satisfied? Get your money back within 30 days</p>
-                </div>
-                
-                <!-- Secure Payment -->
-                <div class="text-center p-6 product-card pearl-shadow rounded-2xl shell-border">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-100 flex items-center justify-center">
-                        <i class="fas fa-lock text-2xl text-blue-600"></i>
-                    </div>
-                    <h3 class="font-bold mb-2">Secure Payment</h3>
-                    <p class="text-sm text-gray-600">SSL encrypted checkout for your protection</p>
-                </div>
-                
-                <!-- Free Returns -->
-                <div class="text-center p-6 product-card pearl-shadow rounded-2xl shell-border">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-100 flex items-center justify-center">
-                        <i class="fas fa-undo text-2xl text-purple-600"></i>
-                    </div>
-                    <h3 class="font-bold mb-2">Free Returns</h3>
-                    <p class="text-sm text-gray-600">Easy returns within Jordan at no extra cost</p>
-                </div>
-                
-                <!-- Quality Guarantee -->
-                <div class="text-center p-6 product-card pearl-shadow rounded-2xl shell-border">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-pink-100 flex items-center justify-center">
-                        <i class="fas fa-gem text-2xl text-pink-600"></i>
-                    </div>
-                    <h3 class="font-bold mb-2">Quality Promise</h3>
-                    <p class="text-sm text-gray-600">Handcrafted with premium materials and care</p>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
    <!-- Instagram Feed Section -->
         <section class="py-16 bg-gradient-to-br from-pink-50 to-purple-50">
@@ -825,92 +782,7 @@
             </div>
         </section>
 
-        <!-- Money-Back Guarantee & Return Policy -->
-        <section class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-12">
-                    <div class="inline-flex items-center justify-center w-20 h-20 ocean-gradient rounded-full mb-6">
-                        <i class="fas fa-money-bill-wave text-white text-3xl"></i>
-                    </div>
-                    <h2 class="text-4xl font-playfair font-bold text-gradient mb-4">100% Money-Back Guarantee</h2>
-                    <p class="text-xl text-gray-600">Shop with confidence - We stand behind every product</p>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="product-card pearl-shadow p-8 rounded-3xl shell-border">
-                        <h3 class="text-2xl font-playfair font-bold mb-4 text-gray-800 flex items-center">
-                            <i class="fas fa-check-circle text-green-600 mr-3"></i>
-                            Our Promise
-                        </h3>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex items-start">
-                                <i class="fas fa-star text-yellow-500 mr-3 mt-1"></i>
-                                <span>Love your purchase or get your money back</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-clock text-blue-600 mr-3 mt-1"></i>
-                                <span>30 full days to try our products</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-shipping-fast text-purple-600 mr-3 mt-1"></i>
-                                <span>Free return shipping on all orders</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-headset text-pink-600 mr-3 mt-1"></i>
-                                <span>24/7 customer support to help you</span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="product-card pearl-shadow p-8 rounded-3xl shell-border">
-                        <h3 class="text-2xl font-playfair font-bold mb-4 text-gray-800 flex items-center">
-                            <i class="fas fa-redo text-purple-600 mr-3"></i>
-                            Easy Returns
-                        </h3>
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <div class="w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center mr-4 mt-1 text-sm font-bold">1</div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-800">Contact Us</h4>
-                                    <p class="text-gray-600 text-sm">Email us or use our contact form</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center mr-4 mt-1 text-sm font-bold">2</div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-800">Send It Back</h4>
-                                    <p class="text-gray-600 text-sm">We'll provide a prepaid return label</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center mr-4 mt-1 text-sm font-bold">3</div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-800">Get Refunded</h4>
-                                    <p class="text-gray-600 text-sm">Full refund within 3-5 business days</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="text-center mt-12 p-6 product-card pearl-shadow rounded-3xl shell-border">
-                    <p class="text-lg font-semibold text-gray-800 mb-2">Questions about returns?</p>
-                    <p class="text-gray-600 mb-4">Our customer service team is here to help</p>
-                    <div class="flex items-center justify-center space-x-6">
-                        <a href="mailto:info@nalashop.com" class="flex items-center text-pink-600 hover:text-pink-700">
-                            <i class="fas fa-envelope mr-2"></i>
-                            info@nalashop.com
-                        </a>
-                        <a href="tel:+962799401754" class="flex items-center text-pink-600 hover:text-pink-700">
-                            <i class="fas fa-phone mr-2"></i>
-                            00962 - 799401754
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Shopping Cart Sidebar -->
     <div id="cartSidebar" class="fixed top-0 right-0 w-96 h-full bg-white shadow-2xl cart-slide-in z-50">
@@ -986,24 +858,7 @@
                         <textarea class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-pink-400 focus:border-transparent h-20" placeholder="Any custom name beading or special requests?"></textarea>
                     </div>
                     
-                    <!-- Security Badges -->
-                    <div class="mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
-                        <div class="flex items-center justify-center space-x-6 mb-3">
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-shield-alt text-green-600"></i>
-                                <span class="text-sm font-medium text-green-700">SSL Secured</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-lock text-green-600"></i>
-                                <span class="text-sm font-medium text-green-700">256-bit Encryption</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-credit-card text-green-600"></i>
-                                <span class="text-sm font-medium text-green-700">PCI Compliant</span>
-                            </div>
-                        </div>
-                        <p class="text-xs text-green-600 text-center">Your payment information is secure and encrypted</p>
-                    </div>
+
 
                     <div class="bg-gray-50 rounded-2xl p-6">
                         <h4 class="font-bold mb-4">Order Summary</h4>
@@ -1282,47 +1137,11 @@
                 </div>
             </div>
             
-            <!-- Trust Badges Section -->
-            <div class="flex items-center justify-center space-x-8 py-6 border-t border-pink-200">
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-shield-alt text-green-600 text-lg"></i>
-                    <div class="text-center">
-                        <p class="text-xs font-semibold text-gray-800">SSL SECURED</p>
-                        <p class="text-xs text-gray-600">256-bit Encryption</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-truck text-blue-600 text-lg"></i>
-                    <div class="text-center">
-                        <p class="text-xs font-semibold text-gray-800">FREE SHIPPING</p>
-                        <p class="text-xs text-gray-600">Orders over 50 JD</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-undo text-purple-600 text-lg"></i>
-                    <div class="text-center">
-                        <p class="text-xs font-semibold text-gray-800">30-DAY RETURNS</p>
-                        <p class="text-xs text-gray-600">Money Back Guarantee</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-headset text-pink-600 text-lg"></i>
-                    <div class="text-center">
-                        <p class="text-xs font-semibold text-gray-800">24/7 SUPPORT</p>
-                        <p class="text-xs text-gray-600">Customer Service</p>
-                    </div>
-                </div>
-            </div>
+
 
             <div class="text-center pt-6 border-t border-pink-200">
                 <p class="text-gray-600">&copy; 2025 Nala Shop. All rights reserved. Made with 💖 for ocean lovers.</p>
-                <div class="flex items-center justify-center space-x-4 mt-2">
-                    <span class="text-xs text-gray-500">Secured by SSL</span>
-                    <span class="text-xs text-gray-500">•</span>
-                    <span class="text-xs text-gray-500">PCI DSS Compliant</span>
-                    <span class="text-xs text-gray-500">•</span>
-                    <span class="text-xs text-gray-500">Trusted by 2,500+ customers</span>
-                </div>
+                <p class="text-gray-600">Designed by DAWAS</p>
             </div>
         </div>
     </footer>
