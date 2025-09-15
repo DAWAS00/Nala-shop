@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Initialize EmailJS
         // SETUP REQUIRED: Replace with your actual EmailJS public key from https://www.emailjs.com/
-        emailjs.init("vsbYsxGX4taqt4ofd"); // Get this from EmailJS Dashboard > Account > API Keys
+        emailjs.init("v71k_gBeh0cqp1jq3"); // Get this from EmailJS Dashboard > Account > API Keys
 
         // Enhanced email template for order notifications
         const emailTemplate = `
@@ -811,8 +811,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         : customerData.location;
                     
                     // Send email using EmailJS with enhanced HTML template
-                    await emailjs.send('service_b2n507f', 'template_z5cruy4', {
-                        to_email: 'dawasmohammad888@gmail.com',
+                    await emailjs.send('service_69eqvzb', 'template_e4z19ds', {
+                        to_email: 'danaphotography05@gmail.com',
                         customer_name: customerData.name,
                         customer_initial: customerData.name.charAt(0).toUpperCase(),
                         customer_phone: customerData.phone,
@@ -828,7 +828,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         business_tagline: 'Handcrafted Ocean Treasures',
                         total_items: cart.reduce((sum, item) => sum + item.quantity, 0),
                         currency: 'JD',
-                        support_email: 'dawasmohammad888@gmail.com',
+                        support_email: 'danaphotography05@gmail.com',
                         website_url: window.location.origin,
                         // Location-specific data
                         location_coordinates: customerData.locationData.coordinates || 'Not provided',

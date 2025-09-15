@@ -68,17 +68,17 @@ Open `js/script.js` and replace these placeholders:
 // Replace this line:
 emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
 // With your actual public key:
-emailjs.init("user_abcdefghijk123456");
+emailjs.init("v71k_gBeh0cqp1jq3");
 
 // Replace this line:
 await emailjs.send('YOUR_EMAILJS_SERVICE_ID', 'YOUR_EMAILJS_TEMPLATE_ID', {
 // With your actual IDs:
-await emailjs.send('service_abc123', 'template_xyz789', {
+await emailjs.send('service_69eqvzb', 'template_e4z19ds', {
 
 // Replace this email:
 to_email: 'your-business-email@example.com',
 // With your actual business email:
-to_email: 'info@nalashop.com',
+to_email: 'danaphotography05@gmail.com',
 ```
 
 ## Step 6: Test Your Setup
