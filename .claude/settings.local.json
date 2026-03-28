@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/dawas/OneDrive/Desktop/Nala Shop v2/**)",
+      "Bash(npx create-next-app@latest nala-shop-next --typescript --tailwind --app --no-src-dir --no-eslint --import-alias \"@/*\" --yes)",
+      "Bash(mkdir -p \"c:\\\\Users\\\\dawas\\\\OneDrive\\\\Desktop\\\\Nala Shop v2\\\\nala-shop-next\\\\public\\\\images\\\\products\")",
+      "Bash(mkdir -p \"c:\\\\Users\\\\dawas\\\\OneDrive\\\\Desktop\\\\Nala Shop v2\\\\nala-shop-next\\\\public\\\\videos\")",
+      "Bash(cp \"c:\\\\Users\\\\dawas\\\\OneDrive\\\\Desktop\\\\Nala Shop v2\\\\Nala-shop\\\\Nala Shop\\\\images\"/*.jpeg \"c:\\\\Users\\\\dawas\\\\OneDrive\\\\Desktop\\\\Nala Shop v2\\\\nala-shop-next\\\\public\\\\images\\\\products/\")",
+      "Bash(cp \"c:\\\\Users\\\\dawas\\\\OneDrive\\\\Desktop\\\\Nala Shop v2\\\\Nala-shop\\\\Nala Shop\\\\images\"/*.mp4 \"c:\\\\Users\\\\dawas\\\\OneDrive\\\\Desktop\\\\Nala Shop v2\\\\nala-shop-next\\\\public\\\\videos/\")",
+      "Bash(cp \"c:\\\\Users\\\\dawas\\\\OneDrive\\\\Desktop\\\\Nala Shop v2\\\\Nala-shop\\\\Nala Shop\\\\images\"/*.jpg \"c:\\\\Users\\\\dawas\\\\OneDrive\\\\Desktop\\\\Nala Shop v2\\\\nala-shop-next\\\\public\\\\images\\\\products/\")",
+      "Bash(cp \"c:\\\\Users\\\\dawas\\\\OneDrive\\\\Desktop\\\\Nala Shop v2\\\\Nala-shop\\\\Nala Shop\\\\images\"/*.png \"c:\\\\Users\\\\dawas\\\\OneDrive\\\\Desktop\\\\Nala Shop v2\\\\nala-shop-next\\\\public\\\\images\\\\products/\")",
+      "Bash(cp \"c:\\\\Users\\\\dawas\\\\OneDrive\\\\Desktop\\\\Nala Shop v2\\\\Nala-shop\\\\Nala Shop\\\\images/Dana.jpeg\" \"c:\\\\Users\\\\dawas\\\\OneDrive\\\\Desktop\\\\Nala Shop v2\\\\nala-shop-next\\\\public\\\\images/\")"
+    ]
+  }
+}

@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,28 +7,25 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700&family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    
-    <!-- Plyr CSS -->
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
-    
-    <!-- Favicon -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <link rel="icon" type="image/png" href="images/Logo2.PNG">
     <link rel="shortcut icon" type="image/png" href="images/Logo2.PNG">
-    
     <link rel="stylesheet" href="css/styles.css">
-    <style>
- 
-    </style>
-    <!-- Leaflet.js for interactive maps -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
-    <!-- Header -->
+
+    <!-- =====================================================
+         SECTION: Header & Navigation
+         Sticky top bar — logo, desktop nav links, cart button,
+         and the collapsible mobile menu.
+    ===================================================== -->
     <header class="sticky top-0 z-50" style="background-color: #FFBEDD;">
         <div class="max-w-7xl mx-auto px-4 py-3">
             <div class="flex items-center justify-between">
+
                 <!-- Mobile Menu Button -->
                 <button id="mobileMenuToggle" class="md:hidden text-white hover:text-pink-200 transition-colors p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,8 +51,6 @@
                         <a href="#collections" class="text-white hover:text-pink-200 transition-colors font-medium font-montserrat text-base">Collections</a>
                         <a href="#about" class="text-white hover:text-pink-200 transition-colors font-medium font-montserrat text-base">About</a>
                     </nav>
-                    
-                    <!-- Cart -->
                     <button id="cartToggle" class="relative btn-ocean font-montserrat text-sm md:text-base font-medium px-3 py-2 md:px-4 md:py-2">
                         <i class="fas fa-shopping-cart mr-1 md:mr-2"></i>
                         <span class="hidden sm:inline">Cart</span>
@@ -79,18 +72,17 @@
         </div>
     </header>
 
-
-
-    <!-- Hero Section -->
+    <!-- =====================================================
+         SECTION: Hero Slideshow
+         Full-screen background slideshow with "Ocean Dreams"
+         title and the main CTA button.
+    ===================================================== -->
     <section id="home" class="py-32 relative overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <!-- Slideshow Background -->
             <div id="hero-slideshow" class="w-full h-full relative">
-                <!-- Loading placeholder -->
                 <div class="slideshow-loading absolute inset-0 bg-gradient-to-br from-pink-100 to-blue-100 flex items-center justify-center">
                     <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-500"></div>
                 </div>
-                
                 <img src="images/18.jpeg" alt="Nala Shop Collection" class="slideshow-image active absolute inset-0 w-full h-full object-cover transition-all duration-1000" data-index="0" loading="eager">
                 <img data-src="images/19.jpeg" alt="Nala Shop Collection" class="slideshow-image lazy absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-0" data-index="1" loading="lazy">
                 <img data-src="images/20.jpeg" alt="Nala Shop Collection" class="slideshow-image lazy absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-0" data-index="2" loading="lazy">
@@ -100,27 +92,26 @@
                 <img data-src="images/10.jpg" alt="Nala Shop Collection" class="slideshow-image lazy absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-0" data-index="6" loading="lazy">
             </div>
             <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-            
-
         </div>
         <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
             <div>
                 <h1 class="text-6xl md:text-8xl text-white mb-6 drop-shadow-lg" style="font-family: 'Dancing Script', cursive; font-weight: 700;">Ocean Dreams</h1>
                 <p class="text-lg md:text-xl text-white mb-8 max-w-3xl mx-auto drop-shadow-md" style="font-family: 'Montserrat', sans-serif; font-weight: 300; letter-spacing: 0.5px;">
-                    Handcrafted phone cases adorned with real seashells, pearls, and ocean treasures. 
+                    Handcrafted phone cases adorned with real seashells, pearls, and ocean treasures.
                     Each piece tells a story of the sea.
                 </p>
                 <button onclick="scrollToSection('products')" class="btn-ocean text-lg px-8 py-4" style="font-family: 'Montserrat', sans-serif; font-weight: 500; letter-spacing: 1px;">
                     <span class="seashell-icon"></span>Explore Collection
                 </button>
-                
-
             </div>
         </div>
     </section>
 
-    
-    <!-- Lightbox Modal -->
+    <!-- =====================================================
+         SECTION: Lightbox Modal
+         Full-screen image viewer. Opened by js/modules/ui.js
+         via openLightbox(images, startIndex).
+    ===================================================== -->
     <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4">
         <div class="relative max-w-4xl max-h-full">
             <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-3xl hover:text-pink-300 z-10">&times;</button>
@@ -134,11 +125,14 @@
         </div>
     </div>
 
-    <!-- Featured Collections -->
+    <!-- =====================================================
+         SECTION: Featured Collections
+         Three static collection cards: Shell Paradise,
+         Soft Whispers, Ocean Accessories.
+    ===================================================== -->
     <section id="collections" class="py-20">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-4xl font-playfair font-bold text-center text-gradient mb-16">Our Signature Collections</h2>
-            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                 <div class="product-card pearl-shadow p-8 rounded-3xl text-center shell-border">
                     <div class="text-6xl mb-4">🐚</div>
@@ -146,14 +140,12 @@
                     <p class="text-gray-600 mb-6">Elegant cases featuring handpicked seashells, starfish, and ocean pearls in soft pink and coral tones.</p>
                     <div class="text-2xl font-bold text-pink-500">From 12 JD</div>
                 </div>
-                
                 <div class="product-card pearl-shadow p-8 rounded-3xl text-center shell-border">
                     <div class="text-6xl mb-4">💎</div>
                     <h3 class="text-2xl font-playfair font-bold mb-4 text-gray-800">Soft Whispers</h3>
                     <p class="text-gray-600 mb-6">Delicate designs with "Matcha Mood", "Ocean Soul", and "Feminine Touch" personalization options.</p>
                     <div class="text-2xl font-bold text-pink-500">From 15 JD</div>
                 </div>
-                
                 <div class="product-card pearl-shadow p-8 rounded-3xl text-center shell-border">
                     <div class="text-6xl mb-4">🎀</div>
                     <h3 class="text-2xl font-playfair font-bold mb-4 text-gray-800">Ocean Accessories</h3>
@@ -164,35 +156,42 @@
         </div>
     </section>
 
-    <!-- Products Section -->
+    <!-- =====================================================
+         SECTION: Products Grid
+         Dynamically rendered by js/modules/products.js.
+         Edit product data in js/data/products.js.
+    ===================================================== -->
     <section id="products" class="py-20 shell-pattern">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-4xl font-playfair font-bold text-center text-gradient mb-16">Handcrafted Treasures</h2>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="productGrid">
-                <!-- Products will be dynamically inserted here -->
+                <!-- Products dynamically inserted by js/modules/products.js -->
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- =====================================================
+         SECTION: About / Creator Story
+         Brand story, feature pillars, and Dana's bilingual
+         (Arabic) founder story with Instagram link.
+    ===================================================== -->
     <section id="about" class="py-20">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-playfair font-bold text-gradient mb-8">Our Ocean Story</h2>
                 <div class="max-w-4xl mx-auto">
                     <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                        Since 2019, Nala Shop has been creating unique phone cases and accessories inspired by the beauty of the ocean. 
-                        Each piece is thoughtfully handcrafted with real seashells, pearls, and ocean treasures, bringing the serenity 
+                        Since 2019, Nala Shop has been creating unique phone cases and accessories inspired by the beauty of the ocean.
+                        Each piece is thoughtfully handcrafted with real seashells, pearls, and ocean treasures, bringing the serenity
                         and elegance of the sea to your everyday life.
                     </p>
                     <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                        Our "Small Details, Big Vibes" philosophy ensures every case is a work of art, featuring personalized name beading, 
+                        Our "Small Details, Big Vibes" philosophy ensures every case is a work of art, featuring personalized name beading,
                         premium packaging, and attention to detail that makes each piece truly special.
                     </p>
                 </div>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="text-center">
                     <div class="w-20 h-20 mx-auto mb-6 rounded-full ocean-gradient flex items-center justify-center text-3xl">🌊</div>
@@ -210,31 +209,28 @@
                     <p class="text-gray-600">Beautiful gift presentation with pink tissue paper and elegant boxes</p>
                 </div>
             </div>
-            
-            <!-- Creator Story Section -->
+
+            <!-- Creator Story -->
             <div class="mt-20 creator-section shell-pattern rounded-3xl p-8 md:p-12 relative overflow-hidden">
-                <!-- Floating decorative elements -->
                 <div class="absolute top-10 left-10 text-4xl opacity-20 floating" style="animation-delay: 0s;">🌸</div>
                 <div class="absolute top-20 right-20 text-3xl opacity-20 floating" style="animation-delay: 1s;">✨</div>
                 <div class="absolute bottom-20 left-20 text-3xl opacity-20 floating" style="animation-delay: 2s;">🌊</div>
-                
+
                 <div class="max-w-6xl mx-auto relative z-10">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
                         <!-- Creator Photo -->
                         <div class="text-center lg:text-left">
                             <div class="relative inline-block creator-photo-container">
                                 <div class="absolute inset-0 bg-gradient-to-r from-pink-400 via-purple-500 to-pink-400 rounded-full animate-pulse opacity-30 scale-110"></div>
                                 <img src="images/Dana.jpeg" alt="Dana Firas - Founder of Nala Shop" class="w-80 h-80 object-cover rounded-full shadow-2xl mx-auto lg:mx-0 relative z-10 creator-photo border-4 border-white">
-                                <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full flex items-center justify-center text-white text-2xl shadow-lg sparkle-badge z-20">
-                                    ✨
-                                </div>
-                                <!-- Decorative rings -->
+                                <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full flex items-center justify-center text-white text-2xl shadow-lg sparkle-badge z-20">✨</div>
                                 <div class="absolute inset-0 rounded-full border-2 border-pink-300 opacity-50 scale-110 animate-ping"></div>
                                 <div class="absolute inset-0 rounded-full border-2 border-purple-300 opacity-30 scale-125 animate-ping" style="animation-delay: 0.5s;"></div>
                             </div>
                         </div>
-                        
-                        <!-- Creator Story -->
+
+                        <!-- Creator Story Text -->
                         <div class="text-center lg:text-right creator-story">
                             <h3 class="text-4xl font-playfair font-bold text-gradient mb-8 creator-title">قصة المؤسسة</h3>
                             <div class="space-y-6 text-lg text-gray-700 leading-relaxed story-text" dir="rtl">
@@ -248,15 +244,12 @@
                                     اليوم، مشروعي مش بس متجر، هو مساحة جمعت فيها حُبي للإبداع ورغبتي أوصل للناس منتجات بلمسة خاصة وجودة تليق فيهم
                                 </p>
                             </div>
-                            
-                            <!-- Creator Badge and Instagram Button -->
+
                             <div class="mt-10 space-y-4">
                                 <div class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-pink-400 to-purple-500 text-white rounded-full font-semibold shadow-xl creator-badge">
                                     <span class="mr-3 text-2xl">💖</span>
                                     <span class="text-lg">دانه فراس - مؤسسة نالا شوب</span>
                                 </div>
-                                
-                                <!-- Instagram Button -->
                                 <div class="mt-6">
                                     <a href="https://www.instagram.com/dana_firass/" target="_blank" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 text-white rounded-full font-bold shadow-xl instagram-btn transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
                                         <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
@@ -276,30 +269,31 @@
         </div>
     </section>
 
-
-
-
-
-   <!-- Instagram Feed Section -->
-        <section class="py-16 bg-gradient-to-br from-pink-50 to-purple-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full mb-6">
-                        <i class="fab fa-instagram text-white text-2xl"></i>
-                    </div>
-                    <h2 class="text-4xl font-playfair font-bold text-gray-800 mb-4">Follow Our Journey</h2>
-                    <p class="text-xl text-gray-600 mb-6">See our latest handmade creations on Instagram</p>
-                    <a href="https://www.instagram.com/nala_shoopp/" target="_blank" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300">
-                        <i class="fab fa-instagram mr-2"></i>
-                        Follow @nala_shoopp
-                    </a>
+    <!-- =====================================================
+         SECTION: Instagram Feed & Reels
+         Static Instagram post grid, 3 Plyr video reels,
+         social sharing buttons, and UGC call-to-action.
+    ===================================================== -->
+    <section class="py-16 bg-gradient-to-br from-pink-50 to-purple-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full mb-6">
+                    <i class="fab fa-instagram text-white text-2xl"></i>
                 </div>
-                
-                <!-- Instagram Posts Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                    <!-- Post 1: Soft Whispers Collection -->
-                    <a href="https://www.instagram.com/p/DGBMfhGt9YH/?img_index=1" target="_blank" class="block">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 instagram-post cursor-pointer">
+                <h2 class="text-4xl font-playfair font-bold text-gray-800 mb-4">Follow Our Journey</h2>
+                <p class="text-xl text-gray-600 mb-6">See our latest handmade creations on Instagram</p>
+                <a href="https://www.instagram.com/nala_shoopp/" target="_blank" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300">
+                    <i class="fab fa-instagram mr-2"></i>
+                    Follow @nala_shoopp
+                </a>
+            </div>
+
+            <!-- Instagram Posts Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+
+                <!-- Post 1: Soft Whispers Collection -->
+                <a href="https://www.instagram.com/p/DGBMfhGt9YH/?img_index=1" target="_blank" class="block">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 instagram-post cursor-pointer">
                         <div class="relative">
                             <img src="images/36.jpeg" alt="Soft Whispers Collection" class="w-full h-64 object-cover">
                             <div class="absolute top-3 left-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs">
@@ -311,9 +305,7 @@
                                 <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
                                     <img src="images/logo.png" alt="Nala Shop Logo" class="w-full h-full object-cover">
                                 </div>
-                                <div>
-                                    <p class="font-semibold text-sm">nala_shoopp</p>
-                                </div>
+                                <p class="font-semibold text-sm">nala_shoopp</p>
                             </div>
                             <div class="flex items-center justify-between text-sm">
                                 <div class="flex items-center space-x-4">
@@ -329,12 +321,12 @@
                                 <span class="text-xs text-blue-600">#handmade #jordan #softwhispers</span>
                             </div>
                         </div>
-                        </div>
-                    </a>
-                    
-                    <!-- Post 2: Leopard Edition -->
-                    <a href="https://www.instagram.com/p/DM-7WmAMrOs/?img_index=1" target="_blank" class="block">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 instagram-post cursor-pointer">
+                    </div>
+                </a>
+
+                <!-- Post 2: Leopard Edition -->
+                <a href="https://www.instagram.com/p/DM-7WmAMrOs/?img_index=1" target="_blank" class="block">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 instagram-post cursor-pointer">
                         <div class="relative">
                             <img src="images/18.jpeg" alt="Leopard Edition" class="w-full h-64 object-cover">
                             <div class="absolute top-3 left-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs">
@@ -346,9 +338,7 @@
                                 <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
                                     <img src="images/logo.png" alt="Nala Shop Logo" class="w-full h-full object-cover">
                                 </div>
-                                <div>
-                                    <p class="font-semibold text-sm">nala_shoopp</p>
-                                </div>
+                                <p class="font-semibold text-sm">nala_shoopp</p>
                             </div>
                             <div class="flex items-center justify-between text-sm">
                                 <div class="flex items-center space-x-4">
@@ -364,12 +354,12 @@
                                 <span class="text-xs text-blue-600">#leopard #phoneholder #bold</span>
                             </div>
                         </div>
-                        </div>
-                    </a>
-                    
-                    <!-- Post 3: Ocean Collection -->
-                    <a href="https://www.instagram.com/p/C-2amjNMLwf/?img_index=1" target="_blank" class="block">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 instagram-post cursor-pointer">
+                    </div>
+                </a>
+
+                <!-- Post 3: Ocean Collection -->
+                <a href="https://www.instagram.com/p/C-2amjNMLwf/?img_index=1" target="_blank" class="block">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 instagram-post cursor-pointer">
                         <div class="relative">
                             <img src="images/37.jpeg" alt="Ocean Collection" class="w-full h-64 object-cover">
                             <div class="absolute top-3 left-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs">
@@ -381,9 +371,7 @@
                                 <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
                                     <img src="images/logo.png" alt="Nala Shop Logo" class="w-full h-full object-cover">
                                 </div>
-                                <div>
-                                    <p class="font-semibold text-sm">nala_shoopp</p>
-                                </div>
+                                <p class="font-semibold text-sm">nala_shoopp</p>
                             </div>
                             <div class="flex items-center justify-between text-sm">
                                 <div class="flex items-center space-x-4">
@@ -399,12 +387,12 @@
                                 <span class="text-xs text-blue-600">#ocean #summer #handmade</span>
                             </div>
                         </div>
-                        </div>
-                    </a>
-                    
-                    <!-- Post 4: New Collection -->
-                    <a href="https://www.instagram.com/nala_shoopp/p/DJ9bm0Wspj6/?img_index=1" target="_blank" class="block">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 instagram-post cursor-pointer">
+                    </div>
+                </a>
+
+                <!-- Post 4: New Collection -->
+                <a href="https://www.instagram.com/nala_shoopp/p/DJ9bm0Wspj6/?img_index=1" target="_blank" class="block">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 instagram-post cursor-pointer">
                         <div class="relative">
                             <img src="images/38.jpeg" alt="New Collection" class="w-full h-64 object-cover">
                             <div class="absolute top-3 left-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs">
@@ -416,9 +404,7 @@
                                 <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
                                     <img src="images/logo.png" alt="Nala Shop Logo" class="w-full h-full object-cover">
                                 </div>
-                                <div>
-                                    <p class="font-semibold text-sm">nala_shoopp</p>
-                                </div>
+                                <p class="font-semibold text-sm">nala_shoopp</p>
                             </div>
                             <p class="text-gray-800 text-sm mb-3">Discover our latest handcrafted collection! ✨ Each piece tells a unique story 💫 #NewDrop</p>
                             <div class="flex items-center justify-between text-sm">
@@ -435,366 +421,345 @@
                                 <span class="text-xs text-blue-600">#handmade #newcollection #unique</span>
                             </div>
                         </div>
-                        </div>
-                    </a>
-                   
-                </div>
-                
-                <!-- Instagram Reels Section -->
-                <div class="mt-16 mb-12">
-                    <div class="text-center mb-8">
-                        <h3 class="text-3xl font-playfair font-bold mb-4 text-gray-800">Instagram Reels</h3>
-                        <p class="text-xl text-gray-600 mb-6">Watch our products come to life!</p>
                     </div>
-                    
-                    <!-- Reels Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Reel 1: Product Showcase -->
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 instagram-reel">
-                            <div class="relative aspect-[9/16] bg-gradient-to-br from-pink-100 to-purple-100">
-                                <video class="plyr-video w-full h-full object-cover" poster="images/1.jpeg" preload="metadata" playsinline>
-                                    <source src="images/7.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                                <div class="absolute top-3 left-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs z-10">
-                                    <i class="fab fa-instagram mr-1"></i>@nala_shoopp
-                                </div>
-                                <div class="absolute top-3 right-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs z-10">
-                                    <i class="fas fa-play mr-1"></i>Reel
-                                </div>
-                            </div>
-                            <div class="p-4">
-                                <div class="flex items-center mb-3">
-                                    <div class="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3">
-                                        N
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-sm">nala_shoopp</p>
-                                        <p class="text-xs text-gray-500">3 days ago</p>
-                                    </div>
-                                </div>
-                                <p class="text-gray-800 text-sm mb-3">✨ Behind the scenes of creating our handmade phone cases! Each piece is crafted with love and attention to detail 💕</p>
-                                <div class="flex items-center justify-between text-sm">
-                                    <div class="flex items-center space-x-4">
-                                        <div class="flex items-center space-x-1">
-                                            <i class="fas fa-heart text-red-500"></i>
-                                            <span class="text-gray-600">1.2K</span>
-                                        </div>
-                                        <div class="flex items-center space-x-1">
-                                            <i class="fas fa-comment text-gray-500"></i>
-                                            <span class="text-gray-600">89</span>
-                                        </div>
-                                        <div class="flex items-center space-x-1">
-                                            <i class="fas fa-share text-gray-500"></i>
-                                            <span class="text-gray-600">45</span>
-                                        </div>
-                                    </div>
-                                    <a href="https://www.instagram.com/reel/C9sPgKHNbYN/" target="_blank" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300">
-                                        <i class="fab fa-instagram mr-1"></i>View
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Reel 2: Product in Use -->
-                         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 instagram-reel">
-                             <div class="relative aspect-[9/16] bg-gradient-to-br from-blue-100 to-teal-100">
-                                 <video class="plyr-video w-full h-full object-cover" poster="images/2.jpeg" preload="metadata" playsinline>
-                                     <source src="images/39.mp4" type="video/mp4">
-                                     Your browser does not support the video tag.
-                                 </video>
-                                 <div class="absolute top-3 left-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs z-10">
-                                     <i class="fab fa-instagram mr-1"></i>@nala_shoopp
-                                 </div>
-                                 <div class="absolute top-3 right-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs z-10">
-                                     <i class="fas fa-play mr-1"></i>Reel
-                                 </div>
-                             </div>
-                            <div class="p-4">
-                                <div class="flex items-center mb-3">
-                                    <div class="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3">
-                                        N
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-sm">nala_shoopp</p>
-                                        <p class="text-xs text-gray-500">5 days ago</p>
-                                    </div>
-                                </div>
-                                <p class="text-gray-800 text-sm mb-3">🌊 Ocean collection in action! Perfect grip and style for your daily adventures 📱✨</p>
-                                <div class="flex items-center justify-between text-sm">
-                                    <div class="flex items-center space-x-4">
-                                        <div class="flex items-center space-x-1">
-                                            <i class="fas fa-heart text-red-500"></i>
-                                            <span class="text-gray-600">856</span>
-                                        </div>
-                                        <div class="flex items-center space-x-1">
-                                            <i class="fas fa-comment text-gray-500"></i>
-                                            <span class="text-gray-600">34</span>
-                                        </div>
-                                        <div class="flex items-center space-x-1">
-                                            <i class="fas fa-share text-gray-500"></i>
-                                            <span class="text-gray-600">28</span>
-                                        </div>
-                                    </div>
-                                    <a href="https://www.instagram.com/reel/C-5kxxmsOHm/" target="_blank" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300">
-                                        <i class="fab fa-instagram mr-1"></i>View
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Reel 3: Customer Feature -->
-                         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 instagram-reel">
-                             <div class="relative aspect-[9/16] bg-gradient-to-br from-purple-100 to-pink-100">
-                                 <video class="plyr-video w-full h-full object-cover" poster="images/22.jpg" preload="metadata" playsinline>
-                                     <source src="images/40.mp4" type="video/mp4">
-                                     Your browser does not support the video tag.
-                                 </video>
-                                 <div class="absolute top-3 left-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs z-10">
-                                     <i class="fab fa-instagram mr-1"></i>@nala_shoopp
-                                 </div>
-                                 <div class="absolute top-3 right-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs z-10">
-                                     <i class="fas fa-play mr-1"></i>Reel
-                                 </div>
-                             </div>
-                            <div class="p-4">
-                                <div class="flex items-center mb-3">
-                                    <div class="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3">
-                                        N
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-sm">nala_shoopp</p>
-                                        <p class="text-xs text-gray-500">1 week ago</p>
-                                    </div>
-                                </div>
-                                <p class="text-gray-800 text-sm mb-3">💕 Customer love! Thank you for choosing our handmade accessories. Your support means everything! 🙏</p>
-                                <div class="flex items-center justify-between text-sm">
-                                    <div class="flex items-center space-x-4">
-                                        <div class="flex items-center space-x-1">
-                                            <i class="fas fa-heart text-red-500"></i>
-                                            <span class="text-gray-600">2.1K</span>
-                                        </div>
-                                        <div class="flex items-center space-x-1">
-                                            <i class="fas fa-comment text-gray-500"></i>
-                                            <span class="text-gray-600">156</span>
-                                        </div>
-                                        <div class="flex items-center space-x-1">
-                                            <i class="fas fa-share text-gray-500"></i>
-                                            <span class="text-gray-600">73</span>
-                                        </div>
-                                    </div>
-                                    <a href="https://www.instagram.com/reel/C_BEZBAt09h/" target="_blank" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300">
-                                        <i class="fab fa-instagram mr-1"></i>View
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- View More Reels Button -->
-                    <div class="text-center mt-8">
-                        <a href="https://www.instagram.com/nala_shoopp/reels/" target="_blank" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-full font-semibold hover:from-purple-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105">
-                            <i class="fab fa-instagram mr-2"></i>
-                            View More Reels
-                        </a>
-                    </div>
-                </div>
+                </a>
 
-                <!-- User Generated Content -->
-                <div class="mt-12 text-center">
-                    <h3 class="text-2xl font-playfair font-bold mb-6 text-gray-800">Share Your Nala Moments</h3>
-                    <p class="text-gray-600 mb-6">Tag us @nala_shoopp to be featured!</p>
-                    <div class="flex flex-wrap justify-center gap-2 mb-8">
-                        <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-sm">#nalashop</span>
-                        <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">#handmade</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">#jordan</span>
-                        <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm">#madewithlove</span>
-                    </div>
-                    
-                    <!-- Social Media Buttons -->
-                    <div class="flex justify-center space-x-4 mb-8">
-                        <a href="https://www.instagram.com/nala_shoopp/" target="_blank" class="social-btn instagram-btn">
-                            <i class="fab fa-instagram"></i>
-                            <span>Instagram</span>
-                        </a>
-                        <a href="https://www.tiktok.com/share?url=" target="_blank" class="social-btn fa-tiktok">
-                            <i class="fab fa-tiktok"></i>
-                            <span>TikTok</span>
-                        </a>
-                        
-                        
-                    </div>
-                    
-                    <!-- Share This Page -->
-                    <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-6 max-w-md mx-auto">
-                        <h4 class="font-semibold text-gray-800 mb-3">Love our products? Share with friends!</h4>
-                        <div class="flex justify-center space-x-3">
-                            <button onclick="shareOnFacebook()" class="share-btn bg-blue-600 hover:bg-blue-700">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-                            <button onclick="shareOnTwitter()" class="share-btn bg-sky-500 hover:bg-sky-600">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-                            <button onclick="shareOnWhatsApp()" class="share-btn bg-green-500 hover:bg-green-600">
-                                <i class="fab fa-whatsapp"></i>
-                            </button>
-                            <button onclick="copyLink()" class="share-btn bg-gray-600 hover:bg-gray-700">
-                                <i class="fas fa-link"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </section>
 
-        <!-- User Generated Content Gallery -->
-        <section class="py-20 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <div class="inline-flex items-center justify-center w-16 h-16 ocean-gradient rounded-full mb-6">
-                        <i class="fas fa-heart text-white text-2xl"></i>
-                    </div>
-                    <h2 class="text-5xl font-playfair font-bold text-gradient mb-6">Our Happy Customers</h2>
-                    <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Join thousands of satisfied customers who love their handcrafted Nala accessories</p>
-                    
-                    <!-- Customer Stats -->
-                    <div class="flex justify-center items-center space-x-8 mb-8">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-pink-600 mb-1">2,500+</div>
-                            <div class="text-sm text-gray-600">Happy Customers</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-purple-600 mb-1">4.9★</div>
-                            <div class="text-sm text-gray-600">Average Rating</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-blue-600 mb-1">98%</div>
-                            <div class="text-sm text-gray-600">Satisfaction Rate</div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-center space-x-3 mb-12">
-                        <span class="px-6 py-3 bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-full text-sm font-semibold shadow-lg">#NalaShop</span>
-                        <span class="px-6 py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-full text-sm font-semibold shadow-lg">#HandmadeWithLove</span>
-                        <span class="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full text-sm font-semibold shadow-lg">#JordanMade</span>
-                    </div>
+            <!-- Instagram Reels -->
+            <div class="mt-16 mb-12">
+                <div class="text-center mb-8">
+                    <h3 class="text-3xl font-playfair font-bold mb-4 text-gray-800">Instagram Reels</h3>
+                    <p class="text-xl text-gray-600 mb-6">Watch our products come to life!</p>
                 </div>
-                
-                <!-- Customer Testimonials -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    <!-- Testimonial 1 -->
-                    <div class="product-card pearl-shadow p-8 rounded-3xl shell-border bg-white hover:scale-105 transition-all duration-300">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-xl font-bold mr-4">
-                                S
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800">Sarah Al-Zahra</h4>
-                                <div class="flex items-center">
-                                    <div class="flex text-yellow-400 mr-2">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="text-sm text-gray-600">5.0</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 italic mb-4">"Absolutely love my ocean-themed phone case! The quality is amazing and it's so unique. I get compliments everywhere I go. Nala Shop exceeded my expectations!"</p>
-                        <div class="flex items-center text-sm text-gray-500">
-                            <i class="fab fa-instagram mr-2"></i>
-                            <span>@sarah_styles</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Testimonial 2 -->
-                    <div class="product-card pearl-shadow p-8 rounded-3xl shell-border bg-white hover:scale-105 transition-all duration-300">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-white text-xl font-bold mr-4">
-                                M
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800">Maya Khalil</h4>
-                                <div class="flex items-center">
-                                    <div class="flex text-yellow-400 mr-2">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="text-sm text-gray-600">5.0</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 italic mb-4">"The craftsmanship is incredible! Each piece feels like a work of art. I've ordered 3 different cases and they're all perfect. Fast shipping too!"</p>
-                        <div class="flex items-center text-sm text-gray-500">
-                            <i class="fab fa-instagram mr-2"></i>
-                            <span>@maya_accessories</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Testimonial 3 -->
-                    <div class="product-card pearl-shadow p-8 rounded-3xl shell-border bg-white hover:scale-105 transition-all duration-300">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white text-xl font-bold mr-4">
-                                L
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800">Lina Mansour</h4>
-                                <div class="flex items-center">
-                                    <div class="flex text-yellow-400 mr-2">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="text-sm text-gray-600">5.0</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 italic mb-4">"Supporting local Jordanian businesses has never felt this good! Beautiful products, excellent customer service, and fast delivery. Highly recommend!"</p>
-                        <div class="flex items-center text-sm text-gray-500">
-                            <i class="fab fa-instagram mr-2"></i>
-                            <span>@lina_jordan</span>
-                        </div>
-                    </div>
-                </div>
-                
 
-                
-                <!-- Call to Action -->
-                <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-3xl p-8 text-center">
-                    <h3 class="text-2xl font-playfair font-bold text-gray-800 mb-4">Want to be featured?</h3>
-                    <p class="text-gray-600 mb-6">Share your Nala moments and get a chance to be featured on our website!</p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-2xl">📸</span>
-                            <span class="text-gray-700">Take a photo with your Nala accessory</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Reel 1: Product Showcase -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 instagram-reel">
+                        <div class="relative aspect-[9/16] bg-gradient-to-br from-pink-100 to-purple-100">
+                            <video class="plyr-video w-full h-full object-cover" poster="images/1.jpeg" preload="metadata" playsinline>
+                                <source src="images/7.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="absolute top-3 left-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs z-10">
+                                <i class="fab fa-instagram mr-1"></i>@nala_shoopp
+                            </div>
+                            <div class="absolute top-3 right-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs z-10">
+                                <i class="fas fa-play mr-1"></i>Reel
+                            </div>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="text-2xl">📱</span>
-                            <span class="text-gray-700">Post on Instagram</span>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="text-2xl">🏷️</span>
-                            <span class="text-gray-700">Tag @nala_shoopp</span>
+                        <div class="p-4">
+                            <div class="flex items-center mb-3">
+                                <div class="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3">N</div>
+                                <div>
+                                    <p class="font-semibold text-sm">nala_shoopp</p>
+                                    <p class="text-xs text-gray-500">3 days ago</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-800 text-sm mb-3">✨ Behind the scenes of creating our handmade phone cases! Each piece is crafted with love and attention to detail 💕</p>
+                            <div class="flex items-center justify-between text-sm">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center space-x-1">
+                                        <i class="fas fa-heart text-red-500"></i>
+                                        <span class="text-gray-600">1.2K</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <i class="fas fa-comment text-gray-500"></i>
+                                        <span class="text-gray-600">89</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <i class="fas fa-share text-gray-500"></i>
+                                        <span class="text-gray-600">45</span>
+                                    </div>
+                                </div>
+                                <a href="https://www.instagram.com/reel/C9sPgKHNbYN/" target="_blank" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300">
+                                    <i class="fab fa-instagram mr-1"></i>View
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <a href="https://www.instagram.com/nala_shoopp/" target="_blank" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300">
+
+                    <!-- Reel 2: Product in Use -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 instagram-reel">
+                        <div class="relative aspect-[9/16] bg-gradient-to-br from-blue-100 to-teal-100">
+                            <video class="plyr-video w-full h-full object-cover" poster="images/2.jpeg" preload="metadata" playsinline>
+                                <source src="images/39.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="absolute top-3 left-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs z-10">
+                                <i class="fab fa-instagram mr-1"></i>@nala_shoopp
+                            </div>
+                            <div class="absolute top-3 right-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs z-10">
+                                <i class="fas fa-play mr-1"></i>Reel
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center mb-3">
+                                <div class="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3">N</div>
+                                <div>
+                                    <p class="font-semibold text-sm">nala_shoopp</p>
+                                    <p class="text-xs text-gray-500">5 days ago</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-800 text-sm mb-3">🌊 Ocean collection in action! Perfect grip and style for your daily adventures 📱✨</p>
+                            <div class="flex items-center justify-between text-sm">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center space-x-1">
+                                        <i class="fas fa-heart text-red-500"></i>
+                                        <span class="text-gray-600">856</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <i class="fas fa-comment text-gray-500"></i>
+                                        <span class="text-gray-600">34</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <i class="fas fa-share text-gray-500"></i>
+                                        <span class="text-gray-600">28</span>
+                                    </div>
+                                </div>
+                                <a href="https://www.instagram.com/reel/C-5kxxmsOHm/" target="_blank" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300">
+                                    <i class="fab fa-instagram mr-1"></i>View
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reel 3: Customer Feature -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 instagram-reel">
+                        <div class="relative aspect-[9/16] bg-gradient-to-br from-purple-100 to-pink-100">
+                            <video class="plyr-video w-full h-full object-cover" poster="images/22.jpg" preload="metadata" playsinline>
+                                <source src="images/40.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="absolute top-3 left-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs z-10">
+                                <i class="fab fa-instagram mr-1"></i>@nala_shoopp
+                            </div>
+                            <div class="absolute top-3 right-3 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs z-10">
+                                <i class="fas fa-play mr-1"></i>Reel
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center mb-3">
+                                <div class="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3">N</div>
+                                <div>
+                                    <p class="font-semibold text-sm">nala_shoopp</p>
+                                    <p class="text-xs text-gray-500">1 week ago</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-800 text-sm mb-3">💕 Customer love! Thank you for choosing our handmade accessories. Your support means everything! 🙏</p>
+                            <div class="flex items-center justify-between text-sm">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center space-x-1">
+                                        <i class="fas fa-heart text-red-500"></i>
+                                        <span class="text-gray-600">2.1K</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <i class="fas fa-comment text-gray-500"></i>
+                                        <span class="text-gray-600">156</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <i class="fas fa-share text-gray-500"></i>
+                                        <span class="text-gray-600">73</span>
+                                    </div>
+                                </div>
+                                <a href="https://www.instagram.com/reel/C_BEZBAt09h/" target="_blank" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300">
+                                    <i class="fab fa-instagram mr-1"></i>View
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-8">
+                    <a href="https://www.instagram.com/nala_shoopp/reels/" target="_blank" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-full font-semibold hover:from-purple-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105">
                         <i class="fab fa-instagram mr-2"></i>
-                        Follow & Tag Us
+                        View More Reels
                     </a>
                 </div>
             </div>
-        </section>
 
+            <!-- User Generated Content -->
+            <div class="mt-12 text-center">
+                <h3 class="text-2xl font-playfair font-bold mb-6 text-gray-800">Share Your Nala Moments</h3>
+                <p class="text-gray-600 mb-6">Tag us @nala_shoopp to be featured!</p>
+                <div class="flex flex-wrap justify-center gap-2 mb-8">
+                    <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-sm">#nalashop</span>
+                    <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">#handmade</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">#jordan</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm">#madewithlove</span>
+                </div>
 
+                <!-- Social Media Buttons -->
+                <div class="flex justify-center space-x-4 mb-8">
+                    <a href="https://www.instagram.com/nala_shoopp/" target="_blank" class="social-btn instagram-btn">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.tiktok.com/share?url=" target="_blank" class="social-btn fa-tiktok">
+                        <i class="fab fa-tiktok"></i>
+                        <span>TikTok</span>
+                    </a>
+                </div>
 
-    <!-- Shopping Cart Sidebar -->
+                <!-- Share This Page -->
+                <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-6 max-w-md mx-auto">
+                    <h4 class="font-semibold text-gray-800 mb-3">Love our products? Share with friends!</h4>
+                    <div class="flex justify-center space-x-3">
+                        <button onclick="shareOnFacebook()" class="share-btn bg-blue-600 hover:bg-blue-700">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button onclick="shareOnTwitter()" class="share-btn bg-sky-500 hover:bg-sky-600">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button onclick="shareOnWhatsApp()" class="share-btn bg-green-500 hover:bg-green-600">
+                            <i class="fab fa-whatsapp"></i>
+                        </button>
+                        <button onclick="copyLink(event)" class="share-btn bg-gray-600 hover:bg-gray-700">
+                            <i class="fas fa-link"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION: Customer Testimonials
+         3 review cards, satisfaction stats, and UGC CTA.
+    ===================================================== -->
+    <section class="py-20 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center justify-center w-16 h-16 ocean-gradient rounded-full mb-6">
+                    <i class="fas fa-heart text-white text-2xl"></i>
+                </div>
+                <h2 class="text-5xl font-playfair font-bold text-gradient mb-6">Our Happy Customers</h2>
+                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Join thousands of satisfied customers who love their handcrafted Nala accessories</p>
+
+                <!-- Customer Stats -->
+                <div class="flex justify-center items-center space-x-8 mb-8">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-pink-600 mb-1">2,500+</div>
+                        <div class="text-sm text-gray-600">Happy Customers</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-purple-600 mb-1">4.9★</div>
+                        <div class="text-sm text-gray-600">Average Rating</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-1">98%</div>
+                        <div class="text-sm text-gray-600">Satisfaction Rate</div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center space-x-3 mb-12">
+                    <span class="px-6 py-3 bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-full text-sm font-semibold shadow-lg">#NalaShop</span>
+                    <span class="px-6 py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-full text-sm font-semibold shadow-lg">#HandmadeWithLove</span>
+                    <span class="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full text-sm font-semibold shadow-lg">#JordanMade</span>
+                </div>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+
+                <!-- Testimonial 1 -->
+                <div class="product-card pearl-shadow p-8 rounded-3xl shell-border bg-white hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-xl font-bold mr-4">S</div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Sarah Al-Zahra</h4>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Absolutely love my ocean-themed phone case! The quality is amazing and it's so unique. I get compliments everywhere I go. Nala Shop exceeded my expectations!"</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fab fa-instagram mr-2"></i>
+                        <span>@sarah_styles</span>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="product-card pearl-shadow p-8 rounded-3xl shell-border bg-white hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-white text-xl font-bold mr-4">M</div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Maya Khalil</h4>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"The craftsmanship is incredible! Each piece feels like a work of art. I've ordered 3 different cases and they're all perfect. Fast shipping too!"</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fab fa-instagram mr-2"></i>
+                        <span>@maya_accessories</span>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="product-card pearl-shadow p-8 rounded-3xl shell-border bg-white hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white text-xl font-bold mr-4">L</div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Lina Mansour</h4>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-sm text-gray-600">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Supporting local Jordanian businesses has never felt this good! Beautiful products, excellent customer service, and fast delivery. Highly recommend!"</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fab fa-instagram mr-2"></i>
+                        <span>@lina_jordan</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Call to Action -->
+            <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-3xl p-8 text-center">
+                <h3 class="text-2xl font-playfair font-bold text-gray-800 mb-4">Want to be featured?</h3>
+                <p class="text-gray-600 mb-6">Share your Nala moments and get a chance to be featured on our website!</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-2xl">📸</span>
+                        <span class="text-gray-700">Take a photo with your Nala accessory</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-2xl">📱</span>
+                        <span class="text-gray-700">Post on Instagram</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-2xl">🏷️</span>
+                        <span class="text-gray-700">Tag @nala_shoopp</span>
+                    </div>
+                </div>
+                <a href="https://www.instagram.com/nala_shoopp/" target="_blank" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300">
+                    <i class="fab fa-instagram mr-2"></i>
+                    Follow & Tag Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION: Cart Sidebar
+         Fixed right-panel cart. Items rendered dynamically
+         by js/modules/cart.js → updateCartUI().
+    ===================================================== -->
     <div id="cartSidebar" class="fixed top-0 right-0 w-96 h-full bg-white shadow-2xl cart-slide-in z-50">
         <div class="p-6 border-b shell-pattern">
             <div class="flex items-center justify-between">
@@ -804,11 +769,9 @@
                 </button>
             </div>
         </div>
-        
         <div class="flex-1 overflow-y-auto p-6" id="cartItems">
-            <!-- Cart items will be inserted here -->
+            <!-- Cart items dynamically inserted by js/modules/cart.js -->
         </div>
-        
         <div class="border-t p-6 shell-pattern">
             <div class="flex items-center justify-between mb-4">
                 <span class="text-xl font-bold">Total:</span>
@@ -820,7 +783,12 @@
         </div>
     </div>
 
-    <!-- Checkout Modal -->
+    <!-- =====================================================
+         SECTION: Checkout Modal
+         Order form: name, phone, email, delivery location
+         (map picker), personalisation, order summary.
+         Handled by js/modules/checkout.js → handleCheckout().
+    ===================================================== -->
     <div id="checkoutModal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-screen overflow-y-auto">
             <div class="p-8">
@@ -828,7 +796,7 @@
                     <h2 class="text-3xl font-playfair font-bold text-gradient mb-2">Complete Your Order</h2>
                     <p class="text-gray-600">We'll send your order details to our team</p>
                 </div>
-                
+
                 <form id="checkoutForm" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
@@ -840,12 +808,12 @@
                             <input type="tel" required class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-pink-400 focus:border-transparent" placeholder="Your phone number">
                         </div>
                     </div>
-                    
+
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
                         <input type="email" required class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-pink-400 focus:border-transparent" placeholder="your@email.com">
                     </div>
-                    
+
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Delivery Location *</label>
                         <div class="space-y-3">
@@ -862,13 +830,11 @@
                             </button>
                         </div>
                     </div>
-                    
+
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Personalization Request</label>
                         <textarea class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-pink-400 focus:border-transparent h-20" placeholder="Any custom name beading or special requests?"></textarea>
                     </div>
-                    
-
 
                     <div class="bg-gray-50 rounded-2xl p-6">
                         <h4 class="font-bold mb-4">Order Summary</h4>
@@ -880,7 +846,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Accepted Payment Methods -->
                     <div class="mb-6">
                         <p class="text-sm font-medium text-gray-700 mb-3 text-center">We Accept:</p>
@@ -917,50 +883,49 @@
         </div>
     </div>
 
-    <!-- Empty Cart Modal -->
+    <!-- =====================================================
+         SECTION: Empty Cart Modal
+         Shown when user tries to check out with no items.
+         Closed by closeEmptyCartModal() in checkout.js.
+    ===================================================== -->
     <div id="emptyCartModal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
         <div class="empty-cart-modal rounded-3xl shadow-2xl max-w-md w-full">
-            <!-- Floating decorative elements -->
             <div class="empty-cart-decoration">🛒</div>
             <div class="empty-cart-decoration">💔</div>
             <div class="empty-cart-decoration">🌊</div>
-            
             <div class="text-center p-8">
                 <div class="inline-flex items-center justify-center w-20 h-20 ocean-gradient rounded-full mb-6">
                     <i class="fas fa-shopping-cart text-white text-3xl"></i>
                 </div>
-                
                 <h2 class="text-2xl font-playfair font-bold text-gradient mb-3">Your Cart is Empty</h2>
                 <p class="text-gray-600 mb-6">Looks like you haven't added any ocean treasures yet!</p>
-                
                 <div class="space-y-3">
                     <button onclick="closeEmptyCartModal()" class="w-full btn-ocean py-3">
-                        <i class="fas fa-gem mr-2"></i>
-                        Explore Our Collection
+                        <i class="fas fa-gem mr-2"></i>Explore Our Collection
                     </button>
                     <button onclick="closeEmptyCartModal()" class="w-full px-6 py-3 border border-gray-300 rounded-2xl font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                        <i class="fas fa-times mr-2"></i>
-                        Close
+                        <i class="fas fa-times mr-2"></i>Close
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Order Success Modal -->
+    <!-- =====================================================
+         SECTION: Order Success Modal
+         Shown after a successful checkout submission.
+         Closed by closeOrderSuccessModal() in checkout.js.
+    ===================================================== -->
     <div id="orderSuccessModal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
         <div class="order-success-modal rounded-3xl shadow-2xl max-w-md w-full">
-            <!-- Floating decorative elements -->
             <div class="success-decoration">🎉</div>
             <div class="success-decoration">✨</div>
             <div class="success-decoration">🌊</div>
             <div class="success-decoration">💎</div>
-            
             <div class="text-center p-8">
                 <div class="inline-flex items-center justify-center w-20 h-20 success-gradient rounded-full mb-6">
                     <i class="fas fa-check-circle text-white text-3xl"></i>
                 </div>
-                
                 <h2 class="text-2xl font-playfair font-bold text-gradient mb-3">Order Placed Successfully!</h2>
                 <div class="order-success-details mb-4">
                     <p class="order-number text-lg font-semibold text-gray-800 mb-1"></p>
@@ -968,24 +933,26 @@
                     <p class="order-contact text-sm text-gray-600"></p>
                 </div>
                 <p class="text-gray-600 mb-6">Thank you for choosing Nala Shop! We'll contact you soon to confirm your order details.</p>
-                
                 <div class="space-y-3">
                     <button onclick="scrollToSection('products'); closeOrderSuccessModal();" class="w-full btn-ocean py-3">
-                        <i class="fas fa-shopping-bag mr-2"></i>
-                        Continue Shopping
+                        <i class="fas fa-shopping-bag mr-2"></i>Continue Shopping
                     </button>
                     <button onclick="closeOrderSuccessModal()" class="w-full px-6 py-3 border border-gray-300 rounded-2xl font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                        <i class="fas fa-times mr-2"></i>
-                        Close
+                        <i class="fas fa-times mr-2"></i>Close
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Location Selection Modal -->
+    <!-- =====================================================
+         SECTION: Location Selection Modal
+         Leaflet.js interactive map for delivery address.
+         Managed entirely by js/modules/location.js.
+    ===================================================== -->
     <div id="locationModal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
         <div class="location-modal rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+
             <!-- Modal Header -->
             <div class="location-modal-header p-6 border-b border-gray-200">
                 <div class="flex items-center justify-between">
@@ -1002,6 +969,7 @@
 
             <!-- Modal Content -->
             <div class="location-modal-content flex flex-col lg:flex-row h-[600px]">
+
                 <!-- Map Container -->
                 <div class="flex-1 relative">
                     <div id="locationMap" class="w-full h-full bg-gray-100 flex items-center justify-center">
@@ -1010,7 +978,6 @@
                             <p>Loading interactive map...</p>
                         </div>
                     </div>
-                    <!-- Map Controls -->
                     <div class="absolute top-4 right-4 space-y-2">
                         <button id="getCurrentLocation" class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors" title="Get Current Location">
                             <i class="fas fa-crosshairs text-pink-500"></i>
@@ -1024,8 +991,7 @@
                 <!-- Address Form -->
                 <div class="w-full lg:w-80 p-6 bg-gray-50 border-l border-gray-200">
                     <h3 class="text-lg font-bold mb-4 text-gray-800">Delivery Address</h3>
-                    
-                    <!-- Search Input -->
+
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Search Address</label>
                         <div class="relative">
@@ -1034,13 +1000,11 @@
                         </div>
                     </div>
 
-                    <!-- Address Details -->
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Street Address</label>
                             <input type="text" id="streetAddress" placeholder="Enter street address" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent">
                         </div>
-                        
                         <div class="grid grid-cols-2 gap-3">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
@@ -1051,12 +1015,10 @@
                                 <input type="text" id="areaAddress" placeholder="Area" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent">
                             </div>
                         </div>
-
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Building/Apartment</label>
                             <input type="text" id="building" placeholder="Building number, floor, apartment" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent">
                         </div>
-
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Additional Notes</label>
                             <textarea id="locationNotes" placeholder="Landmarks, special instructions..." rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent resize-none"></textarea>
@@ -1077,12 +1039,10 @@
                     <!-- Action Buttons -->
                     <div class="mt-6 space-y-3">
                         <button onclick="confirmLocationSelection()" class="w-full btn-ocean py-3">
-                            <i class="fas fa-check mr-2"></i>
-                            Confirm Location
+                            <i class="fas fa-check mr-2"></i>Confirm Location
                         </button>
                         <button onclick="closeLocationModal()" class="w-full px-6 py-3 border border-gray-300 rounded-2xl font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                            <i class="fas fa-times mr-2"></i>
-                            Cancel
+                            <i class="fas fa-times mr-2"></i>Cancel
                         </button>
                     </div>
                 </div>
@@ -1090,10 +1050,15 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- =====================================================
+         SECTION: Footer
+         3 columns: brand/social, quick links, contact info.
+    ===================================================== -->
     <footer class="shell-pattern py-16">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+
+                <!-- Brand & Social -->
                 <div>
                     <div class="flex items-center space-x-3 mb-6">
                         <div class="w-10 h-10 rounded-full ocean-gradient flex items-center justify-center">
@@ -1102,7 +1067,7 @@
                         <h3 class="text-xl font-playfair font-bold text-gradient">Nala Shop</h3>
                     </div>
                     <p class="text-gray-600 mb-6">
-                        Since 2019, creating unique handcrafted phone cases and accessories inspired by ocean beauty. 
+                        Since 2019, creating unique handcrafted phone cases and accessories inspired by ocean beauty.
                         Each piece brings style, quality, and a touch of the sea to your everyday life.
                     </p>
                     <div class="flex space-x-4">
@@ -1117,7 +1082,8 @@
                         </a>
                     </div>
                 </div>
-                
+
+                <!-- Quick Links -->
                 <div>
                     <h4 class="text-lg font-bold mb-6 text-gray-800">Quick Links</h4>
                     <ul class="space-y-3">
@@ -1127,7 +1093,8 @@
                         <li><a href="#about" class="text-gray-600 hover:text-pink-500 transition-colors">About Us</a></li>
                     </ul>
                 </div>
-                
+
+                <!-- Contact Info -->
                 <div>
                     <h4 class="text-lg font-bold mb-6 text-gray-800">Contact Info</h4>
                     <div class="space-y-3">
@@ -1145,9 +1112,8 @@
                         </p>
                     </div>
                 </div>
-            </div>
-            
 
+            </div>
 
             <div class="text-center pt-6 border-t border-pink-200">
                 <p class="text-gray-600">&copy; 2025 Nala Shop. All rights reserved. Made with 💖 for ocean lovers.</p>
@@ -1156,11 +1122,13 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
-    
-  
-    <script>
-      
-    </script>
+    <!-- =====================================================
+         SCRIPTS
+         Single module entry point. All JS lives in js/modules/.
+         Requires a local server (e.g. Live Server) — ES modules
+         do not work over the file:// protocol.
+    ===================================================== -->
+    <script type="module" src="js/main.js"></script>
+
 </body>
 </html>
